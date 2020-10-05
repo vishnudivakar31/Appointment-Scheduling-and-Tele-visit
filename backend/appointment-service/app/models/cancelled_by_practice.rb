@@ -1,0 +1,2 @@
+class CancelledByPractice < ApplicationRecord
+end

@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  appointment_id: 
+  patient_id: 1
+  date: 2020-10-04
+  start_time: 2020-10-04 20:24:01
+  end_time: 2020-10-04 20:24:01
+  practice_id: 1
+  doctor_id: 1
+  appointment_status: MyString
+  chart_file_path: MyString
+  consultation_summary_file_path: MyString
+
+two:
+  appointment_id: 
+  patient_id: 1
+  date: 2020-10-04
+  start_time: 2020-10-04 20:24:01
+  end_time: 2020-10-04 20:24:01
+  practice_id: 1
+  doctor_id: 1
+  appointment_status: MyString
+  chart_file_path: MyString
+  consultation_summary_file_path: MyString
