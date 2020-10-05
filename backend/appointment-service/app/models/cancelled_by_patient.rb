@@ -1,0 +1,2 @@
+class CancelledByPatient < ApplicationRecord
+end
