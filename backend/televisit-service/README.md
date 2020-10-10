@@ -6,10 +6,10 @@ This micro-service handles tele-visit session and token creation. This micro-ser
 ### PORT: 5050
 
 ### ENDPOINTS
-#### * Create a session for an appointment: 
+#### Create a session for an appointment: 
     GET localhost:5050/televisit?appointment_id=#id&user_token=#token
 
-Response (Status: 201 Created)
+##### Response (Status: 201 Created)
 
     ```json
     {
