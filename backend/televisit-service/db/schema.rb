@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_10_162744) do
+ActiveRecord::Schema.define(version: 2020_10_10_173750) do
 
   create_table "charts", force: :cascade do |t|
     t.string "file_path"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_10_10_162744) do
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "consulation_file_path"
+    t.string "consultation_file_path"
   end
 
 end
