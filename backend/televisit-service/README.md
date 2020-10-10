@@ -9,6 +9,8 @@ This micro-service handles tele-visit session and token creation. This micro-ser
 #### * Create a session for an appointment: 
     GET localhost:5050/televisit?appointment_id=#id&user_token=#token
 
+* Response 
+
     ```json
     {
         "appointment_id": "#{appointment_id}",
