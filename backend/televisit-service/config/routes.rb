@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :televisit, except: [:index, :update]
+  put '/televisit/:id', to: 'televisit#end'
+  patch '/televisit/:id', to: 'televisit#end'
 end
