@@ -15,7 +15,12 @@ class TelevisitController < ApplicationController
     end
     
     def show
-        # TODO: Show Televisit
+        visit = TeleVisit.find(params[:id])
+        if visit
+            render json: visit, status: 200
+        else
+            render json: {message: "invalid tele-visit id: #{params[:id]}"}, status: 404
+        end
     end
 
     def start
