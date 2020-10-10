@@ -105,6 +105,7 @@ This micro-service handles tele-visit session and token creation. This micro-ser
 ```
 
 ### Under Construction
+*   User authorization for CRUD tele-visit
 *   Add multiple charts for a session
 *   Add consultation notes for a session
 *   Find total billing time for a session
