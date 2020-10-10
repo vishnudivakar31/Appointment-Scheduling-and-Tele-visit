@@ -1,0 +1,2 @@
+class TeleVisit < ApplicationRecord
+end
