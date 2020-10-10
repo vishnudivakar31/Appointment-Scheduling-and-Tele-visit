@@ -19,7 +19,7 @@ class TelevisitController < ApplicationController
     end
     
     def show
-        visit = TeleVisit.find(params[:id])
+        visit = @teleVisitService.show_visit(params[:id])
         if visit
             logger.debug 'show tele-visit successful'
             render json: visit, status: 200

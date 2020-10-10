@@ -20,9 +20,14 @@ class TeleVisitService
         visit
     end
 
+    def show_visit(id)
+        visit = TeleVisit.find(id)
+        return visit && visit.status != VISIT_STATUS::CANCELLED ? visit : nil
+    end
+
     def start_session(id)
         visit = TeleVisit.find(id)
-        if visit
+        if visit && visit.status != VISIT_STATUS::CANCELLED && visit.status != VISIT_STATUS::ENDED
             visit.started_at = Time.now
             visit.status = VISIT_STATUS::ACTIVE
             visit.save
@@ -32,7 +37,7 @@ class TeleVisitService
 
     def end_session(id)
         visit = TeleVisit.find(id)
-        if visit 
+        if visit && visit.status != VISIT_STATUS::CANCELLED && visit.status != VISIT_STATUS::ENDED && visit.status === VISIT_STATUS::ACTIVE
             visit.ended_at = Time.now
             visit.status = VISIT_STATUS::ENDED
             visit.save
