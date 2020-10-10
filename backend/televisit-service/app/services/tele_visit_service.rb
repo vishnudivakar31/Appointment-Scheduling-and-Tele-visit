@@ -40,6 +40,15 @@ class TeleVisitService
         visit
     end
 
+    def cancel_session(id)
+        visit = TeleVisit.find(id)
+        if visit 
+            visit.status = VISIT_STATUS::CANCELLED
+            visit.save
+        end
+        visit
+    end
+
     private
 
     def get_session_id
