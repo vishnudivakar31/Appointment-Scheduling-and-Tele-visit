@@ -6,25 +6,25 @@ This micro-service handles tele-visit session and token creation. This micro-ser
 ### PORT: 5050
 
 ### ENDPOINTS
-#### Create a session for an appointment: 
+#### * Create a session for an appointment: 
     GET localhost:5050/televisit?appointment_id=#id&user_token=#token
 
-##### Response (Status: 201 Created)
+##### * Response (Status: 201 Created)
 
-    ```json
-    {
-        "appointment_id": "#{appointment_id}",
-        "session_id": "#{session_id}",
-        "patient_token": "#{patient_token}",
-        "doctor_token": "#{doctor_token}",
-        "started_at": null,
-        "ended_at": null,
-        "status": 0,
-        "created_at": "2020-10-10T21:14:06.469Z",
-        "updated_at": "2020-10-10T21:14:06.469Z",
-        "consultation_file_path": null
-    }
-    ```
+```JSON
+{
+    "appointment_id": "#{appointment_id}",
+    "session_id": "#{session_id}",
+    "patient_token": "#{patient_token}",
+    "doctor_token": "#{doctor_token}",
+    "started_at": null,
+    "ended_at": null,
+    "status": 0,
+    "created_at": "2020-10-10T21:14:06.469Z",
+    "updated_at": "2020-10-10T21:14:06.469Z",
+    "consultation_file_path": null
+}
+```
 
 #### * Get a session for an appointment: 
     GET localhost:5050/televisit/#session_id?user_token=#token
