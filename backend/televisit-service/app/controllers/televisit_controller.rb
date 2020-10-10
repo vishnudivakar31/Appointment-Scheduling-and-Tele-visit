@@ -44,7 +44,17 @@ class TelevisitController < ApplicationController
     end
 
     def end
-        # TODO: end a televisit
+        visit = @teleVisitService.end_session(params[:id])
+        if visit && visit.errors.full_messages.length === 0
+            logger.debug 'tele-visit ended'
+            render json: visit, status: 200
+        elsif visit && visit.errors.full_messages.length > 0
+            logger.fatal "error: #{visit.errors.full_messages.length}"
+            render json: {message: visit.errors.full_messages.length}, status: 500
+        else
+            logger.fatal "error: invalid tele-visit id: #{params[:id]}"
+            render json: {message: "invalid tele-visit id: #{params[:id]}"}, status: 404
+        end
     end
 
     def add_charts

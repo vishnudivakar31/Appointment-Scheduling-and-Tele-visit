@@ -7,8 +7,9 @@ class TeleVisitService
     
     module VISIT_STATUS
         PENDING = 0
-        ENDED = 1
-        CANCELLED = 2
+        ACTIVE = 1
+        ENDED = 2
+        CANCELLED = 3
     end
 
     def create_visit(id)
@@ -23,6 +24,17 @@ class TeleVisitService
         visit = TeleVisit.find(id)
         if visit
             visit.started_at = Time.now
+            visit.status = VISIT_STATUS::ACTIVE
+            visit.save
+        end
+        visit
+    end
+
+    def end_session(id)
+        visit = TeleVisit.find(id)
+        if visit 
+            visit.ended_at = Time.now
+            visit.status = VISIT_STATUS::ENDED
             visit.save
         end
         visit
