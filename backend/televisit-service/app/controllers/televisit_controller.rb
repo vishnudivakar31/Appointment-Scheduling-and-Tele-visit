@@ -1,6 +1,17 @@
 class TelevisitController < ApplicationController
+    def initialize
+        api_key = Rails.application.config.opentok_api_key
+        secret_key = Rails.application.config.opentok_secret_key
+        @teleVisitService = TeleVisitService.new api_key, secret_key
+    end
+    
     def create
-        # TODO: Create Televisits
+        visit = @teleVisitService.create_visit(params[:appointment_id])
+        if visit.errors.full_messages.length === 0
+            render json: visit, status: 201
+        else
+            render json: {message: visit.errors.full_messages}, status: 500
+        end
     end
     
     def show
