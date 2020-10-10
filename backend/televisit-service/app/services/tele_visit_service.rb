@@ -19,6 +19,15 @@ class TeleVisitService
         visit
     end
 
+    def start_session(id)
+        visit = TeleVisit.find(id)
+        if visit
+            visit.started_at = Time.now
+            visit.save
+        end
+        visit
+    end
+
     private
 
     def get_session_id

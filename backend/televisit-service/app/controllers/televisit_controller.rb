@@ -1,15 +1,19 @@
 class TelevisitController < ApplicationController
     def initialize
+        logger.debug 'Tele-Visit Controller initiated'
         api_key = Rails.application.config.opentok_api_key
         secret_key = Rails.application.config.opentok_secret_key
         @teleVisitService = TeleVisitService.new api_key, secret_key
+        logger.debug 'Tele-Visit Service initiated'
     end
     
     def create
         visit = @teleVisitService.create_visit(params[:appointment_id])
         if visit.errors.full_messages.length === 0
+            logger.debug 'new tele-visit created'
             render json: visit, status: 201
         else
+            logger.fatal "error: #{visit.errors.full_messages}"
             render json: {message: visit.errors.full_messages}, status: 500
         end
     end
@@ -17,14 +21,26 @@ class TelevisitController < ApplicationController
     def show
         visit = TeleVisit.find(params[:id])
         if visit
+            logger.debug 'show tele-visit successful'
             render json: visit, status: 200
         else
+            logger.fatal "error: invalid tele-visit id: #{params[:id]}"
             render json: {message: "invalid tele-visit id: #{params[:id]}"}, status: 404
         end
     end
 
     def start
-        # TODO: end a televisit
+        visit = @teleVisitService.start_session(params[:id])
+        if visit && visit.errors.full_messages.length === 0
+            logger.debug 'tele-visit started'
+            render json: visit, status: 200
+        elsif visit && visit.errors.full_messages.length > 0
+            logger.fatal "error: #{visit.errors.full_messages.length}"
+            render json: {message: visit.errors.full_messages.length}, status: 500
+        else
+            logger.fatal "error: invalid tele-visit id: #{params[:id]}"
+            render json: {message: "invalid tele-visit id: #{params[:id]}"}, status: 404
+        end
     end
 
     def end
