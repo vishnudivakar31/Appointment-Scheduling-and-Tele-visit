@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Tele-Visit Mircoservices
+This micro-service handles tele-visit session and token creation. This micro-service owns data about appointment tele-visit, uploaded charts and consulation notes
 
-Things you may want to cover:
+### PORT: 5050
 
-* Ruby version
+### ENDPOINTS
+#### * Create a session for an appointment: 
+    GET localhost:5050/televisit?appointment_id=#id&user_token=#token
 
-* System dependencies
+#### * Get a session for an appointment: 
+    GET localhost:5050/televisit/#session_id?user_token=#token
 
-* Configuration
+#### * Start a session for an appointment: 
+    GET localhost:5050/televisit/#session_id/start?user_token=#token
 
-* Database creation
+#### * END a session for an appointment: 
+    GET localhost:5050/televisit/#session_id/end?user_token=#token
 
-* Database initialization
+#### * Cancel a session for an appointment: 
+    DELETE localhost:5050/televisit/#session_id?user_token=#token
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Under Construction
+*   Add multiple charts for a session
+*   Add consultation notes for a session
+*   Find total billing time for a session
