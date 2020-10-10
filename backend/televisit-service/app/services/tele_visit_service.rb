@@ -47,7 +47,7 @@ class TeleVisitService
 
     def cancel_session(id)
         visit = TeleVisit.find(id)
-        if visit 
+        if visit && visit.status != VISIT_STATUS::ENDED
             visit.status = VISIT_STATUS::CANCELLED
             visit.save
         end
