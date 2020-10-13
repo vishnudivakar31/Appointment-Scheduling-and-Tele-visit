@@ -57,14 +57,6 @@ class TelevisitController < ApplicationController
         end
     end
 
-    def add_charts
-        # TODO: add bulk charts to a file
-    end
-
-    def add_consulation_notes
-        # TODO: make a file for consulation notes and attach with meeting
-    end
-
     def destroy
         visit = @teleVisitService.cancel_session(params[:id])
         if visit && visit.errors.full_messages.length === 0

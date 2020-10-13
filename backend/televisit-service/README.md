@@ -7,7 +7,15 @@ This micro-service handles tele-visit session and token creation. This micro-ser
 
 ### ENDPOINTS
 #### * Create a session for an appointment: 
-    GET localhost:5050/televisit?appointment_id=#id&user_token=#token
+    POST localhost:5050/televisit?user_token=#token
+
+##### * Request Body
+
+```JSON
+{
+    "appointment_id": "#{appointment_id}"
+}
+```
 
 ##### * Response (Status: 201 Created)
 
@@ -21,8 +29,7 @@ This micro-service handles tele-visit session and token creation. This micro-ser
     "ended_at": null,
     "status": 0,
     "created_at": "2020-10-10T21:14:06.469Z",
-    "updated_at": "2020-10-10T21:14:06.469Z",
-    "consultation_file_path": null
+    "updated_at": "2020-10-10T21:14:06.469Z"
 }
 ```
 
@@ -41,8 +48,7 @@ This micro-service handles tele-visit session and token creation. This micro-ser
     "ended_at": null,
     "status": 0,
     "created_at": "2020-10-10T21:14:06.469Z",
-    "updated_at": "2020-10-10T21:14:06.469Z",
-    "consultation_file_path": null
+    "updated_at": "2020-10-10T21:14:06.469Z"
 }
 ```
 
@@ -60,8 +66,7 @@ This micro-service handles tele-visit session and token creation. This micro-ser
     "ended_at": null,
     "status": 1,
     "created_at": "2020-10-10T21:14:06.469Z",
-    "updated_at": "2020-10-10T21:14:06.469Z",
-    "consultation_file_path": null
+    "updated_at": "2020-10-10T21:14:06.469Z"
 }
 ```
 
@@ -79,8 +84,7 @@ This micro-service handles tele-visit session and token creation. This micro-ser
     "ended_at": "#{ended_datetime}",
     "status": 2,
     "created_at": "2020-10-10T21:14:06.469Z",
-    "updated_at": "2020-10-10T21:14:06.469Z",
-    "consultation_file_path": null
+    "updated_at": "2020-10-10T21:14:06.469Z"
 }
 ```
 
@@ -99,13 +103,10 @@ This micro-service handles tele-visit session and token creation. This micro-ser
     "ended_at": null,
     "status": 3,
     "created_at": "2020-10-10T21:14:06.469Z",
-    "updated_at": "2020-10-10T21:14:06.469Z",
-    "consultation_file_path": null
+    "updated_at": "2020-10-10T21:14:06.469Z"
 }
 ```
 
 ### Under Construction
 *   User authorization for CRUD tele-visit
-*   Add multiple charts for a session
-*   Add consultation notes for a session
 *   Find total billing time for a session
