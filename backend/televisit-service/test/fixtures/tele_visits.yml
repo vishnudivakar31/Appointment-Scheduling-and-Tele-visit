@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  appointment_id: 
+  session_id: MyString
+  patient_token: MyString
+  doctor_token: MyString
+  started_at: 2020-10-10 10:01:35
+  ended_at: 2020-10-10 10:01:35
+  status: 1
+
+two:
+  appointment_id: 
+  session_id: MyString
+  patient_token: MyString
+  doctor_token: MyString
+  started_at: 2020-10-10 10:01:35
+  ended_at: 2020-10-10 10:01:35
+  status: 1
