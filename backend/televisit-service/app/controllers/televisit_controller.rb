@@ -70,4 +70,15 @@ class TelevisitController < ApplicationController
             render json: {message: "invalid tele-visit id: #{params[:id]}"}, status: 404
         end
     end
+
+    def billing_time
+        billing_time_json = @teleVisitService.billing_time(params[:id])
+        if billing_time_json
+            logger.debug 'tele-visit billing time generated'
+            render json: billing_time_json, status: 200
+        else
+            logger.fatal "tele-visit: unable to generate billing time"
+            render json: {message: "unable to generate billing time. probable reasons: no tele-visit record, requesting billing time for an active session or requesting billing time for a cancelled session"}, status: 500
+        end
+    end
 end

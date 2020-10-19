@@ -107,6 +107,23 @@ This micro-service handles tele-visit session and token creation. This micro-ser
 }
 ```
 
+#### * Get billing time for tele-visit: 
+    GET localhost:5050/televisit/#session_id/billing_time?user_token=#token
+
+##### * Response (Status: 200 OK)
+```JSON
+{
+    "billing_time": 1393,
+    "appointment_id": "#{appointment_id}",
+    "started_at": "2020-10-10T20:59:59.644Z",
+    "ended_at": "2020-10-10T21:23:12.209Z",
+    "time_unit": "seconds"
+}
+```
+
+##### Billing Time Constraints
+* Meeting should be ended
+* Will not generate billing time for cancelled tele-visit, active tele-visit or pending tele-visit
+
 ### Under Construction
 *   User authorization for CRUD tele-visit
-*   Find total billing time for a session

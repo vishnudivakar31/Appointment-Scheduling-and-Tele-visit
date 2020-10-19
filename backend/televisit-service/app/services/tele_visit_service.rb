@@ -54,6 +54,16 @@ class TeleVisitService
         visit
     end
 
+    def billing_time(id)
+        visit = TeleVisit.find(id)
+        if visit && visit.status != VISIT_STATUS::CANCELLED && visit.status === VISIT_STATUS::ENDED
+            bt = visit.ended_at.to_time.to_i - visit.started_at.to_time.to_i
+            response = {billing_time: bt, appointment_id: visit.appointment_id, started_at: visit.started_at, ended_at: visit.ended_at, time_unit: 'seconds'}
+            return response
+        end
+        return nil
+    end
+
     private
 
     def get_session_id
