@@ -120,10 +120,14 @@ This micro-service handles tele-visit session and token creation. This micro-ser
     "time_unit": "seconds"
 }
 ```
-
-##### Billing Time Constraints
-* Meeting should be ended
-* Will not generate billing time for cancelled tele-visit, active tele-visit or pending tele-visit
-
+```
+Billing Time Constraints
+1. Bill Generation Constraints:
+    i)   Tele-Visit should be in ENDED state
+2. Bill Generation Failure Constraints:
+    i)   Tele-Visit is pending
+    ii)  Tele-Visit is active
+    iii) Tele-Visit is cancelled.
+```
 ### Under Construction
 *   User authorization for CRUD tele-visit
