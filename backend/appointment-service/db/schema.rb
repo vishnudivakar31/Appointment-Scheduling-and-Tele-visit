@@ -10,18 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_05_004005) do
+ActiveRecord::Schema.define(version: 2020_10_19_174031) do
 
   create_table "appointments", primary_key: "appointment_id", force: :cascade do |t|
     t.integer "patient_id"
-    t.date "date"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer "practice_id"
     t.integer "doctor_id"
-    t.string "appointment_status"
-    t.string "chart_file_path"
-    t.string "consultation_summary_file_path"
+    t.integer "appointment_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,7 +31,20 @@ ActiveRecord::Schema.define(version: 2020_10_05_004005) do
 
   create_table "cancelled_by_practices", primary_key: "appointment_id", force: :cascade do |t|
     t.string "cancel_reason"
-    t.integer "patient_id"
+    t.integer "doctor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "charts", force: :cascade do |t|
+    t.text "file_path"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "appointment_id"
+  end
+
+  create_table "consultation_summaries", primary_key: "appointment_id", force: :cascade do |t|
+    t.text "file_path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

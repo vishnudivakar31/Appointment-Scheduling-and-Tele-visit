@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  appointment_id: 
+  file_path: MyText
+
+two:
+  appointment_id: 
+  file_path: MyText
