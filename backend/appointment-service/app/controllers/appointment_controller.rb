@@ -6,11 +6,11 @@ class AppointmentController < ApplicationController
 
     def index
         # TODO: Show all appointments for corresponding patient and doctor
+        # BLOCKED: User authorization is required.
     end
     
     def create
         # TODO: Create appointment for patient or doctor
-        byebug
         request_body = appointment_param
         appointment = @appointmentUtility.create(request_body[:patient_id], request_body[:doctor_id], request_body[:start_time], request_body[:end_time], true)
         if appointment && appointment.errors.full_messages.length === 0
@@ -21,15 +21,26 @@ class AppointmentController < ApplicationController
     end
 
     def show
-        # TODO: Show corresponding appointment
+        appointment = @appointmentUtility.show(params[:id])
+        if appointment && appointment.errors.full_messages.length === 0
+            render json: appointment, status: 200
+        else
+            render json: {message: appointment.errors.full_messages}, status: 500
+        end
     end
 
     def update
-        # TODO: Update corresponding appointment
+        appointment = @appointmentUtility.update_status(params[:id], params[:appointment_status])
+        if appointment && appointment.errors.full_messages.length === 0
+            render json: appointment, status: 200
+        else
+            render json: {message: appointment.errors.full_messages}, status: 500
+        end
     end
 
     def destroy
         # TODO: Delete corresponding appointment
+        # BLOCKED: User authorization is required.
     end
 
     private

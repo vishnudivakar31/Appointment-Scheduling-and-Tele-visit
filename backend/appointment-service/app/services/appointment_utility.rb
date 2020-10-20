@@ -11,4 +11,23 @@ class AppointmentUtility
         appointment.save
         appointment
     end
+    def show(id)
+        appointment = Appointment.find(id)
+        appointment
+    end
+    def update_status(id, status)
+        appointment = Appointment.find(id)
+        status = status.to_i
+        if status == APPOINTMENT_STATUS::ACTIVE && appointment.appointment_status === APPOINTMENT_STATUS::PENDING
+            appointment.appointment_status = APPOINTMENT_STATUS::ACTIVE
+            appointment.save
+            return appointment
+        elsif status == APPOINTMENT_STATUS::ENDED && (appointment.appointment_status === APPOINTMENT_STATUS::PENDING || appointment.appointment_status === APPOINTMENT_STATUS::ACTIVE)
+            appointment.appointment_status = APPOINTMENT_STATUS::ENDED
+            appointment.save
+            return appointment
+        end
+        appointment.errors.add(:appointment_status, "status can't be updated, possible reasons: trying to bring down appointment status or trying to cancel the appointment")
+        appointment
+    end
 end
