@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Practice Portal</title>
+    <!-- Link in Vendor CSS / JS -->
+    <link rel="stylesheet" href="../../assets/vendor/bootstrap/bootstrap.min.css">
+    <script src="../../assets/vendor/jquery/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- Link in Custom CSS / JS -->
+    <link rel="stylesheet" href="../../assets/style/practice-portal.css">
+  </head>
+  <body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Practice Portal</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">View My Calendar<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container-fluid">
+
+      <!-- Toggle Calendar -->
+      <div class="row">
+        <!-- <div class="col">
+          <label for="select-year" class="calendar-menu-label">Year</label>
+          <select id="select-year" class="form-control" name="year">
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+          </select>
+        </div> -->
+        <!-- <div class="col">
+          <label for="select-month" class="calendar-menu-label">Month</label>
+          <select id="select-month" class="form-control" name="month">
+            <option value="Jan">Jan</option>
+            <option value="Feb">Feb</option>
+            <option value="Mar">Mar</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="Aug">Aug</option>
+            <option value="Sept">Sept</option>
+            <option value="Nov">Nov</option>
+            <option value="Dec">Dec</option>
+          </select>
+        </div> -->
+        <div class="col">
+          <label for="select-doctor" class="calendar-menu-label">Doctor Name</label>
+          <select id="select-doctor" class="form-control" name="doctor">
+            <option value="docID1">Jasani, Shruti</option>
+            <option value="docID2">Smith, James</option>
+            <option value="docID3">Thompson, Tyson</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label for="view-start-date" class="calendar-menu-label">Start Date</label>
+          <input id="view-start-date" class="form-control" type="date">
+        </div>
+        <div class="col">
+          <label for="view-end-date" class="calendar-menu-label">End Date</label>
+          <input id="view-end-date" class="form-control" type="date">
+        </div>
+
+        <div class="col">
+          <button id="toggle-left" type="button" class="btn calendar-menu-btn">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
+            </svg>
+          </button>
+          <button id="toggle-right" type="button" class="btn calendar-menu-btn">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Calendar Header -->
+      <div id="calendar-header" class="row">
+          <div class="col calendar-header-day">
+            <h4>Sun</h4>
+          </div>
+          <div class="col calendar-header-day">
+            <h4>Mon</h4>
+          </div>
+          <div class="col calendar-header-day">
+            <h4>Tues</h4>
+          </div>
+          <div class="col calendar-header-day">
+            <h4>Wed</h4>
+          </div>
+          <div class="col calendar-header-day">
+            <h4>Thurs</h4>
+          </div>
+          <div class="col calendar-header-day">
+            <h4>Fri</h4>
+          </div>
+          <div class="col calendar-header-day">
+            <h4>Sat</h4>
+          </div>
+      </div>
+
+
+      <!-- Calendar Body -->
+      <div id="calendar-body" class="row">
+        <div id="calendar-body-sun" class="col calendar-body-day">
+          <!-- Open Slot 1 -->
+          <button class="calendar-timeslot btn btn-secondary" type="button" data-toggle="modal" data-target="#exampleModal1">
+            <span class="timeslot-title">09:00 - 10:00</span>
+          </button>
+          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModal1-label" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModal1-label">Edit Appointment</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+
+                    <div class="form-group">
+                      <label for="exampleModal1-label-date-time-slot">Time Slot</label>
+                      <input type="text" class="form-control-file" id="exampleModal1-label-date-time-slot" placeholder="Sun, 10/21/2020 @ 09:00 - 10:00" disabled>
+                    </div>
+
+                    <!-- Select Patient Name -->
+                    <div class="form-group">
+                      <label for="exampleModal1-label-selectDoctor">Patient Name</label>
+                      <select class="form-control" id="exampleModal1-label-selectDoctor">
+                        <option>*Delete Timeslot*</option>
+                        <option>Adams, Jane</option>
+                        <option>Brown, John</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Open Slot 2 -->
+          <button class="calendar-timeslot btn btn-secondary" type="button" data-toggle="modal" data-target="#exampleModal2">
+            <span class="timeslot-title">10:00 - 11:00</span>
+          </button>
+          <!-- Booked Slot 1 -->
+          <button class="calendar-timeslot btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal4">
+            <span class="timeslot-title">13:00 - 14:00</span>
+          </button>
+          <!-- Open Slot 3 -->
+          <button class="calendar-timeslot btn btn-secondary" type="button" data-toggle="modal" data-target="#exampleModal5">
+            <span class="timeslot-title">14:00 - 15:00</span>
+          </button>
+
+        </div>
+        <div id="calendar-body-mon" class="col calendar-body-day">
+
+        </div>
+        <div id="calendar-body-tues" class="col calendar-body-day">
+
+        </div>
+        <div id="calendar-body-wed" class="col calendar-body-day">
+
+        </div>
+        <div id="calendar-body-thurs" class="col calendar-body-day">
+
+        </div>
+        <div id="calendar-body-fri" class="col calendar-body-day">
+
+        </div>
+        <div id="calendar-body-sat" class="col calendar-body-day">
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+
+    <!-- Modals -->
+
+
+  </body>
+</html>
