@@ -43,6 +43,51 @@ class AppointmentController < ApplicationController
         # BLOCKED: User authorization is required.
     end
 
+    def upload_charts
+        appointment = @appointmentUtility.upload_chart(params[:id], params, params[:files_count])
+        if appointment && appointment.errors.full_messages.length === 0
+            render json: appointment.charts, status: 200
+        else
+            render json: {message: appointment.errors.full_messages}, status: 500
+        end
+    end
+
+    def get_charts
+        appointment = @appointmentUtility.get_charts(params[:id])
+        if appointment && appointment.errors.full_messages.length === 0
+            render json: appointment.charts, status: 200
+        else
+            render json: {message: appointment.errors.full_messages}, status: 500
+        end
+    end
+
+    def get_charts_by_id
+        file = @appointmentUtility.get_charts_by_id(params[:id], params[:chart_id].to_i)
+        if file
+            send_file file[:path], :disposition => 'attachement', :filename => file[:name]
+        else
+            render json: {message: 'no file present to download'}, status: 500
+        end
+    end
+
+    def upload_summary
+        appointment = @appointmentUtility.upload_summary(params[:id], params[:file])
+        if appointment && appointment.errors.full_messages.length === 0
+            render json: appointment.consultationSummary, status: 200
+        else
+            render json: {message: appointment.errors.full_messages}, status: 500
+        end
+    end
+
+    def download_summary
+        file = @appointmentUtility.download_summary(params[:id])
+        if file
+            send_file file[:path], :disposition => 'attachement', :filename => file[:name]
+        else
+            render json: {message: 'no file present to download'}, status: 500
+        end
+    end
+
     private
     def appointment_param
         params[:appointment].permit(:patient_id, :doctor_id, :start_time, :end_time)
