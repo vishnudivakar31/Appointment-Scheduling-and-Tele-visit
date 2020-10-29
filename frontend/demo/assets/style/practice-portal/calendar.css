@@ -1,0 +1,28 @@
+#calendar {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.toggle-doctor {
+  padding-bottom: 10px;
+}
+
+label.calendar-menu-label {
+  text-align: center;
+}
+
+.calendar-menu-btn {
+  height: 100%;
+}
+
+.pp-calendar-booked {
+  /* Defualt Color is Blue */
+}
+
+.pp-calendar-open {
+  background-color: grey;
+}
+
+.pp-calendar-cancelled {
+  background-color: red;
+}

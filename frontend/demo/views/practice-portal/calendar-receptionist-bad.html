@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Practice Portal</title>
+    <!-- Link in Vendor CSS / JS -->
+    <link rel="stylesheet" href="../../assets/vendor/bootstrap/bootstrap.min.css">
+    <script src="../../assets/vendor/jquery/jquery-3.5.1.slim.min.js"></script>
+    <script src="../../assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- Link in Calendar -->
+    <link rel="stylesheet" href='../../assets/vendor/fullcalendar-5.3.2/main.min.css'>
+    <script src='../../assets/vendor/fullcalendar-5.3.2/main.min.js'></script>
+    <!-- Link in Custom CSS / JS -->
+    <link rel="stylesheet" href="../../assets/style/practice-portal.css">
+    <style>
+
+      body {
+        margin: 40px 10px;
+        padding: 0;
+        font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+        font-size: 14px;
+      }
+
+      #calendar {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+    </style>
+    <script href="../../assets/javascript/practice-portal/calendar.js"></script>
+
+  </head>
+  <body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Practice Portal</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">View My Calendar<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container-fluid">
+
+      <!-- Toggle Calendar -->
+      <div class="row">
+
+        <div class="col">
+          <label for="select-doctor" class="calendar-menu-label">Doctor Name</label>
+          <select id="select-doctor" class="form-control" name="doctor">
+            <option value="docID1">Jasani, Shruti</option>
+            <option value="docID2">Smith, James</option>
+            <option value="docID3">Thompson, Tyson</option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label for="view-start-date" class="calendar-menu-label">Start Date</label>
+          <input id="view-start-date" class="form-control" type="date">
+        </div>
+        <div class="col">
+          <label for="view-end-date" class="calendar-menu-label">End Date</label>
+          <input id="view-end-date" class="form-control" type="date">
+        </div>
+
+        <div class="col">
+          <button id="toggle-left" type="button" class="btn calendar-menu-btn">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
+            </svg>
+          </button>
+          <button id="toggle-right" type="button" class="btn calendar-menu-btn">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <!-- Calendar -->
+    <div id='calendar'></div>
+  </body>
+
+  <style>
+
+    body {
+      margin: 40px 10px;
+      padding: 0;
+      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    #calendar {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+  </style>
+</html>
