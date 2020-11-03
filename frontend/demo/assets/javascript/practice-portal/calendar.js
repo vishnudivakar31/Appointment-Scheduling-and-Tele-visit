@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  // Get Today's date
-  var todaysDate = new Date().toJSON().slice(0,10);
+  // Get Sunday of Today's Week
+  var startOfCalander = GetCurrentWeekSunday().toJSON().slice(0,10);
 
   // Create Calendar
   var calendarEl = document.getElementById('calendar');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
     initialView: 'timeGridWeek',
-    initialDate: todaysDate,
+    initialDate: startOfCalander,
     navLinks: true, // can click day/week names to navigate views
     nowIndicator: true,
 
@@ -215,8 +215,8 @@ document.addEventListener('DOMContentLoaded', function() {
       {
         id: 1, // Appointment ID
         title: 'Smith, John', // Patient Name
-        start: '2020-10-30T10:30:00',
-        end: '2020-10-30T12:30:00',
+        start: '2020-11-06T10:30:00',
+        end: '2020-11-06T12:30:00',
         className: 'pp-calendar-booked',
         extendedProps: {
           patientId: 101,
@@ -227,22 +227,22 @@ document.addEventListener('DOMContentLoaded', function() {
       {
         id: 2,
         title: 'Available',
-        start: '2020-10-30T09:00:00',
-        end: '2020-10-30T10:00:00',
+        start: '2020-11-06T09:00:00',
+        end: '2020-11-06T10:00:00',
         className: 'pp-calendar-open',
       },
       {
         id: 3,
         title: 'Available',
-        start: '2020-10-30T13:00:00',
-        end: '2020-10-30T14:00:00',
+        start: '2020-11-06T13:00:00',
+        end: '2020-11-06T14:00:00',
         className: 'pp-calendar-open'
       },
       {
         id: 4,
         title: 'Adams, Jane',
-        start: '2020-10-30T15:00:00',
-        end: '2020-10-30T16:00:00',
+        start: '2020-11-06T15:00:00',
+        end: '2020-11-06T16:00:00',
         className: 'pp-calendar-booked',
         extendedProps: {
           patientId: 101,
@@ -253,8 +253,8 @@ document.addEventListener('DOMContentLoaded', function() {
       {
         id: 5,
         title: 'Cancellation',
-        start: '2020-10-30T16:30:00',
-        end: '2020-10-30T17:30:00',
+        start: '2020-11-06T16:30:00',
+        end: '2020-11-06T17:30:00',
         className: 'pp-calendar-cancelled',
         extendedProps: {
           patientName: "Young, Angela",
@@ -284,8 +284,8 @@ document.addEventListener('DOMContentLoaded', function() {
       {
         id: 6,
         title: 'Moma, Joe',
-        start: '2020-10-31T10:30:00',
-        end: '2020-10-31T12:30:00',
+        start: '2020-11-07T10:30:00',
+        end: '2020-11-07T12:30:00',
         className: 'pp-calendar-booked',
         extendedProps: {
           patientId: 401,
@@ -296,8 +296,8 @@ document.addEventListener('DOMContentLoaded', function() {
       {
         id: 7,
         title: 'Available',
-        start: '2020-10-31T09:00:00',
-        end: '2020-10-31T10:00:00',
+        start: '2020-11-07T09:00:00',
+        end: '2020-11-07T10:00:00',
         className: 'pp-calendar-open'
       }
     ]
@@ -434,6 +434,15 @@ document.addEventListener('DOMContentLoaded', function() {
     return false;
 
   });
+
+
+  // Get start of calendar (Sunday of current week)
+  function GetCurrentWeekSunday() {
+    var d = new Date();
+    var day = d.getDay(),
+    diff = (d.getDate() - day + (day == 0 ? -6 : 1)) - 1; // adjust when day is sunday
+    return new Date(d.setDate(diff));
+  }
 
 
 

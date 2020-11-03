@@ -1,0 +1,25 @@
+
+#video-container img {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-height: 90vh;
+}
+
+#consultation-accordion {
+  margin-top: 10px;
+  max-width: 90%;
+}
+
+#ConsultationSummary-Notes {
+  min-height: 150px;
+}
+
+#EndTelevisit-Btn {
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
