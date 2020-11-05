@@ -64,6 +64,14 @@ class TeleVisitService
         return nil
     end
 
+    def get_televisit_by_appointment_id(appointment_id)
+        visit = TeleVisit.find_by(appointment_id: appointment_id)
+        if visit && visit.status != VISIT_STATUS::CANCELLED && visit.status != VISIT_STATUS::ENDED
+            return visit
+        end
+        return nil
+    end
+
     private
 
     def get_session_id
