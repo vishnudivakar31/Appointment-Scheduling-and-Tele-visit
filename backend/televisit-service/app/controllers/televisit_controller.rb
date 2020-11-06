@@ -12,8 +12,8 @@ class TelevisitController < ApplicationController
         if appointment_id
             visit = @teleVisitService.get_televisit_by_appointment_id(appointment_id)
             if visit
-                logger.debug 'new tele-visit created'
-                render json: visit, status: 201
+                logger.debug 'televisit fetched'
+                render json: visit, status: 200
             else
                 logger.fatal "error: no visit found with appointment id #{appointment_id}"
                 render json: {message: "error: no visit found with appointment id #{appointment_id}"}, status: 500

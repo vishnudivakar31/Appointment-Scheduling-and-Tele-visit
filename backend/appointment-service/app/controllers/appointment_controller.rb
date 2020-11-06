@@ -88,6 +88,35 @@ class AppointmentController < ApplicationController
         end
     end
 
+    def create_billing_codes
+        billing_codes = params[:billing_codes]
+        id = params[:id]
+        response = @appointmentUtility.create_billing_codes(id, billing_codes)
+        if response
+            render json: response
+        else
+            render json: {message: 'error in saving billing codes'}, status: 500
+        end
+    end
+
+    def get_billing_codes
+        response = @appointmentUtility.get_billing_codes(params[:id])
+        if response
+            render json: response
+        else
+            render json: {message: 'error in fetching billing codes'}, status: 500
+        end
+    end
+
+    def report
+        report = @appointmentUtility.generate_report(params[:id])
+        if report
+            render json: report
+        else
+            render json: {message: 'no appointment'}, status: 500
+        end
+    end
+
     private
     def appointment_param
         params[:appointment].permit(:patient_id, :doctor_id, :start_time, :end_time)

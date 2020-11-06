@@ -7,6 +7,9 @@ class AppointmentUtility
         ENDED = 2
         CANCELLED = 3
     end
+    module CONSTANTS
+        TELE_VISIT_URL = 'http://localhost:5050/televisit'
+    end
     def create(patient_id, doctor_id, start_time, end_time, tele_visit_status)
         appointment = Appointment.new(patient_id: patient_id, doctor_id: doctor_id, start_time: start_time, end_time: end_time, appointment_status: APPOINTMENT_STATUS::PENDING)
         appointment.save
@@ -91,6 +94,46 @@ class AppointmentUtility
             file[:name].sub!("storage/#{id}_summary_", '')
         end
         file
+    end
+
+    def create_billing_codes(id, codes)
+        appointment = Appointment.find(id)
+        codes.split(",").each do |code|
+            codeModel = BillingCode.new(code: code, appointment_id: id)
+            appointment.billingCodes << codeModel
+        end
+        appointment.billingCodes
+    end
+
+    def get_billing_codes(id)
+        appointment = Appointment.find(id)
+        appointment.billingCodes
+    end
+
+    def generate_report(id)
+        report = {}
+        appointment = Appointment.find(id)
+        if appointment
+            report[:appointment] = appointment
+            report[:charts] = appointment.charts
+            report[:consultationSummary] = appointment.consultationSummary
+            report[:billingCodes] = appointment.billingCodes
+            report[:appointment_duration] = {duration: appointment.end_time.to_time.to_i - appointment.start_time.to_time.to_i, unit: 'seconds'}
+            begin
+                response = RestClient.get "#{CONSTANTS::TELE_VISIT_URL}?appointment_id=#{appointment.appointment_id}"
+                televisit_response = JSON.parse(response)
+                if response.code === 200
+                    report[:tele_visit] = {visit: televisit_response}
+                    if televisit_response["started_at"] && televisit_response["ended_at"]
+                        report[:tele_visit][:televisit_duration] = { duration: televisit_response["ended_at"].to_time.to_i - televisit_response["started_at"].to_time.to_i, unit: 'seconds'}
+                    end
+                end
+            rescue => ex
+                ex
+            end
+            return report
+        end
+        return nil
     end
 
     private

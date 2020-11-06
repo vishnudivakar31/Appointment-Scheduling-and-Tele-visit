@@ -11,4 +11,5 @@ class Appointment < ApplicationRecord
     validates_with AppointmentValidator
     has_many :charts
     has_one :consultationSummary
+    has_many :billingCodes
 end

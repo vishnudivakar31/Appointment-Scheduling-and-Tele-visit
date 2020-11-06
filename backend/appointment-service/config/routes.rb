@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   get '/appointment/:id/charts/:chart_id', to: 'appointment#get_charts_by_id'
   post '/appointment/:id/consultation_summary', to: 'appointment#upload_summary'
   get '/appointment/:id/consultation_summary', to: 'appointment#download_summary'
+  post '/appointment/:id/billing_codes', to: 'appointment#create_billing_codes'
+  get '/appointment/:id/billing_codes', to: 'appointment#get_billing_codes'
+  get '/appointment/:id/report', to: 'appointment#report'
 end
