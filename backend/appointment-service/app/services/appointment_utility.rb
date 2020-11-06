@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class AppointmentUtility
     module APPOINTMENT_STATUS
         PENDING = 0
@@ -7,8 +9,14 @@ class AppointmentUtility
     end
     def create(patient_id, doctor_id, start_time, end_time, tele_visit_status)
         appointment = Appointment.new(patient_id: patient_id, doctor_id: doctor_id, start_time: start_time, end_time: end_time, appointment_status: APPOINTMENT_STATUS::PENDING)
-        # TODO: Create tele-visit session accordingly
         appointment.save
+        if tele_visit_status.to_s.downcase === 'true'
+            response = RestClient.post CONSTANTS::TELE_VISIT_URL, {appointment_id: appointment.appointment_id}
+            if response.code != 201
+                appointment.destroy
+                appointment.errors.add(:appointment_status, JSON.parse(response))
+            end
+        end
         appointment
     end
     def show(id)
