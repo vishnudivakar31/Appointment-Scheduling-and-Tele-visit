@@ -373,7 +373,5 @@ It will directly download the file via browser
 ##### Response (Status: 200 Ok)
 
 ### Under construction
-* Add billing codes for appointments.
 * View all appointments for user (BLOCKED: Require user authorization)
 * Delete appointments (BLOCKED: Require user authorization)
-* Create tele-visit session for appointments
