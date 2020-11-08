@@ -193,6 +193,185 @@ file: #{file_data}
 It will directly download the file via browser
 ```
 
+#### * Post billing codes to an appointment:
+    POST localhost:4040/appointment/#id/billing_codes?user_token=#token
+##### Request Body
+```JSON
+{
+    "billing_codes": "F01, F02, F03, B17"
+} 
+```
+##### Response (Status: 201 Created)
+```JSON
+{
+    [
+        {
+            "id": 1,
+            "code": "F01",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.525Z",
+            "updated_at": "2020-11-06T18:26:00.525Z"
+        },
+        {
+            "id": 2,
+            "code": " F02",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.535Z",
+            "updated_at": "2020-11-06T18:26:00.535Z"
+        },
+        {
+            "id": 3,
+            "code": " F03",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.538Z",
+            "updated_at": "2020-11-06T18:26:00.538Z"
+        },
+        {
+            "id": 4,
+            "code": " B17",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.541Z",
+            "updated_at": "2020-11-06T18:26:00.541Z"
+        }
+    ]
+}
+```
+#### * Get billing codes to an appointment:
+    POST localhost:4040/appointment/#id/billing_codes?user_token=#token
+##### Response (Status: 200 Ok)
+```JSON
+{
+    [
+        {
+            "id": 1,
+            "code": "F01",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.525Z",
+            "updated_at": "2020-11-06T18:26:00.525Z"
+        },
+        {
+            "id": 2,
+            "code": " F02",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.535Z",
+            "updated_at": "2020-11-06T18:26:00.535Z"
+        },
+        {
+            "id": 3,
+            "code": " F03",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.538Z",
+            "updated_at": "2020-11-06T18:26:00.538Z"
+        },
+        {
+            "id": 4,
+            "code": " B17",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.541Z",
+            "updated_at": "2020-11-06T18:26:00.541Z"
+        }
+    ]
+}
+```
+
+#### * Generate a report of an appointment:
+    GET localhost:4040/appointment/#id/report
+```JSON
+{
+    "appointment": {
+        "appointment_id": 20,
+        "patient_id": 2,
+        "start_time": "2020-11-10T17:50:00.000Z",
+        "end_time": "2020-11-10T17:51:00.000Z",
+        "doctor_id": 2,
+        "appointment_status": 0,
+        "created_at": "2020-11-06T17:40:11.184Z",
+        "updated_at": "2020-11-06T17:40:11.184Z"
+    },
+    "charts": [
+        {
+            "id": 7,
+            "file_path": "storage/20_chart_TECH FAQ.pdf",
+            "created_at": "2020-11-06T19:45:43.647Z",
+            "updated_at": "2020-11-06T19:45:43.647Z",
+            "appointment_id": 20
+        },
+        {
+            "id": 8,
+            "file_path": "storage/20_chart_Aetna Insurance Card.pdf",
+            "created_at": "2020-11-06T19:45:43.663Z",
+            "updated_at": "2020-11-06T19:45:43.663Z",
+            "appointment_id": 20
+        },
+        {
+            "id": 9,
+            "file_path": "storage/20_chart_NJ Institute of Technology Mail - EssexCOVID.org - You are eligible for a test.pdf",
+            "created_at": "2020-11-06T19:45:43.679Z",
+            "updated_at": "2020-11-06T19:45:43.679Z",
+            "appointment_id": 20
+        }
+    ],
+    "consultationSummary": {
+        "appointment_id": 20,
+        "file_path": "storage/20_summary_Aetna Insurance Card.pdf",
+        "created_at": "2020-11-06T19:45:58.979Z",
+        "updated_at": "2020-11-06T19:45:58.979Z"
+    },
+    "billingCodes": [
+        {
+            "id": 1,
+            "code": "F01",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.525Z",
+            "updated_at": "2020-11-06T18:26:00.525Z"
+        },
+        {
+            "id": 2,
+            "code": " F02",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.535Z",
+            "updated_at": "2020-11-06T18:26:00.535Z"
+        },
+        {
+            "id": 3,
+            "code": " F03",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.538Z",
+            "updated_at": "2020-11-06T18:26:00.538Z"
+        },
+        {
+            "id": 4,
+            "code": " B17",
+            "appointment_id": 20,
+            "created_at": "2020-11-06T18:26:00.541Z",
+            "updated_at": "2020-11-06T18:26:00.541Z"
+        }
+    ],
+    "appointment_duration": {
+        "duration": 60,
+        "unit": "seconds"
+    },
+    "tele_visit": {
+        "visit": {
+            "appointment_id": 20,
+            "session_id": "2_MX40Njk1MDMyNH5-MTYwNDY4NDQxMTcxMH5JL1BmR3diSElhRWorV2RhMDFMR2JTUmV-UH4",
+            "patient_token": "T1==cGFydG5lcl9pZD00Njk1MDMyNCZzaWc9MDRiZjJmMjdmZDNiZTRhNjU4NjY4NzU1YWRiMjNiMTc3OGE2MDgyNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5qazFNRE15Tkg1LU1UWXdORFk0TkRReE1UY3hNSDVKTDFCbVIzZGlTRWxoUldvclYyUmhNREZNUjJKVFVtVi1VSDQmY3JlYXRlX3RpbWU9MTYwNDY4NDQxMSZub25jZT0wLjA5OTgyMDU3Nzk2MjI4ODY=",
+            "doctor_token": "T1==cGFydG5lcl9pZD00Njk1MDMyNCZzaWc9ODJjNWVmZGE2MzQzMzg1MWQ4NDVhMWM4MWIxZGVmYjgyYjZiMDJhYjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5qazFNRE15Tkg1LU1UWXdORFk0TkRReE1UY3hNSDVKTDFCbVIzZGlTRWxoUldvclYyUmhNREZNUjJKVFVtVi1VSDQmY3JlYXRlX3RpbWU9MTYwNDY4NDQxMSZub25jZT0wLjYxNTY0MDM1NzEzNTYxMTc=",
+            "started_at": "2020-11-06T19:38:06.640Z",
+            "ended_at": "2020-11-06T19:40:23.014Z",
+            "status": 2,
+            "created_at": "2020-11-06T17:40:11.759Z",
+            "updated_at": "2020-11-06T19:40:23.014Z"
+        },
+        "televisit_duration": {
+            "duration": 137,
+            "unit": "seconds"
+        }
+    }
+}
+```
+##### Response (Status: 200 Ok)
+
 ### Under construction
 * Add billing codes for appointments.
 * View all appointments for user (BLOCKED: Require user authorization)
