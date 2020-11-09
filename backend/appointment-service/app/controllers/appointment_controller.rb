@@ -51,8 +51,21 @@ class AppointmentController < ApplicationController
     end
 
     def destroy
-        # TODO: Delete corresponding appointment
-        # BLOCKED: User authorization is required.
+        patient_id = params[:patient_id]
+        doctor_id = params[:doctor_id]
+        if patient_id
+            appointment = @appointmentUtility.cancel_appointments('patient', params[:id], patient_id, params[:cancel_reason])
+        end
+        if doctor_id
+            appointment = @appointmentUtility.cancel_appointments('doctor', params[:id], doctor_id, params[:cancel_reason])
+        end
+        if appointment
+            render json: appointment, status: 200
+        elsif patient_id === nil && doctor_id === nil
+            render json: {message: 'patient_id or doctor_id is required.'}, status: 500
+        else
+            render json: {message: 'no appointment with this id'}, status: 500
+        end
     end
 
     def upload_charts

@@ -307,6 +307,32 @@ It will directly download the file via browser
 }
 ```
 
+#### * Cancel an appointment:
+    DELETE localhost:4040/appointment/#id?doctor_id=#doctor_id
+
+##### Constraint
+```
+patient_id or doctor_id is required to work.
+```
+
+##### Request Body
+```JSON
+{
+    "cancel_reason": "testing from patient."
+}
+```
+
+##### Response (Status 200 Ok)
+```JSON
+{
+    "appointment_id": 22,
+    "cancel_reason": "testing from patient.",
+    "doctor_id": 2,
+    "created_at": "2020-11-09T05:52:44.173Z",
+    "updated_at": "2020-11-09T05:52:44.173Z"
+}
+```
+
 #### * Generate a report of an appointment:
     GET localhost:4040/appointment/#id/report
 ```JSON

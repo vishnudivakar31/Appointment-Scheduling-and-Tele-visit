@@ -150,6 +150,40 @@ class AppointmentUtility
         end
     end
 
+    def cancel_appointments(user_type, id, user_id, cancel_reason)
+        user_id = user_id.to_i
+        appointment = Appointment.find(id)
+        if appointment && user_type.downcase === 'patient'
+            if appointment.patient_id === user_id && appointment.appointment_status != APPOINTMENT_STATUS::CANCELLED
+                begin
+                    RestClient.delete "#{CONSTANTS::TELE_VISIT_URL}/#{id}"
+                rescue ex =>
+                    ex
+                end
+                appointment.appointment_status = APPOINTMENT_STATUS::CANCELLED
+                appointment.save
+                cancelled_by_patient = CancelledByPatient.new(appointment_id: id, cancel_reason: cancel_reason, patient_id: user_id)
+                cancelled_by_patient.save
+                return cancelled_by_patient
+            end
+        elsif appointment && user_type.downcase === 'doctor' && appointment.appointment_status != APPOINTMENT_STATUS::CANCELLED
+            if appointment.doctor_id === user_id
+                begin
+                    RestClient.delete "#{CONSTANTS::TELE_VISIT_URL}/#{id}"
+                rescue ex =>
+                    ex
+                end
+                byebug
+                appointment.appointment_status = APPOINTMENT_STATUS::CANCELLED
+                appointment.save
+                cancelled_by_practice = CancelledByPractice.new(appointment_id: id, cancel_reason: cancel_reason, doctor_id: user_id)
+                cancelled_by_practice.save
+                return cancelled_by_practice
+            end
+        end
+        return nil
+    end
+
     private
     def store_file(id, file, type)
         new_file = File.new("storage/#{id}_#{type}_#{file.original_filename}", 'w')
