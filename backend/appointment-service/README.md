@@ -335,6 +335,7 @@ patient_id or doctor_id is required to work.
 
 #### * Generate a report of an appointment:
     GET localhost:4040/appointment/#id/report
+##### Response (Status: 200 Ok)
 ```JSON
 {
     "appointment": {
@@ -429,7 +430,3 @@ patient_id or doctor_id is required to work.
     }
 }
 ```
-##### Response (Status: 200 Ok)
-
-### Under construction
-* Delete appointments (BLOCKED: Require user authorization)
