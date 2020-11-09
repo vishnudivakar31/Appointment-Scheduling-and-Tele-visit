@@ -7,9 +7,13 @@ class AppointmentUtility
         ENDED = 2
         CANCELLED = 3
     end
+
     module CONSTANTS
         TELE_VISIT_URL = 'http://localhost:5050/televisit'
     end
+
+    APPOINTMENT_STATUS_LABEL = ['PENDING', 'ACTIVE', 'ENDED', 'CANCELLED']
+
     def create(patient_id, doctor_id, start_time, end_time, tele_visit_status)
         appointment = Appointment.new(patient_id: patient_id, doctor_id: doctor_id, start_time: start_time, end_time: end_time, appointment_status: APPOINTMENT_STATUS::PENDING)
         appointment.save
@@ -134,6 +138,16 @@ class AppointmentUtility
             return report
         end
         return nil
+    end
+
+    def all_appointments(user_type, id)
+        if user_type.downcase === 'patient'
+            appointments = Appointment.where("patient_id = ?", id)
+            return appointments
+        else
+            appointments = Appointment.where("doctor_id = ?", id)
+            return appointments
+        end
     end
 
     private

@@ -13,9 +13,10 @@ class TeleVisitService
     end
 
     def create_visit(id)
-        session_id = get_session_id
-        patient_token = get_token session_id
-        doctor_token = get_token session_id
+        session = generate_session
+        session_id = get_session_id session
+        patient_token = get_token session
+        doctor_token = get_token session
         visit = TeleVisit.create(appointment_id: id, session_id: session_id, patient_token: patient_token, doctor_token: doctor_token, status: VISIT_STATUS::PENDING)
         visit
     end
@@ -74,12 +75,18 @@ class TeleVisitService
 
     private
 
-    def get_session_id
-        @opentok.create_session.session_id
+    def get_session_id(session)
+        session.session_id
     end
 
-    def get_token(session_id)
-        @opentok.generate_token session_id
+    def generate_session
+        @opentok.create_session
+    end
+
+    def get_token(session)
+        session.generate_token({
+            :expire_time => Time.now + 30.day
+        })
     end
 
 end

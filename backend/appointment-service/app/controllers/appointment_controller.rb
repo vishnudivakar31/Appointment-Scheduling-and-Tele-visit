@@ -5,12 +5,24 @@ class AppointmentController < ApplicationController
     end
 
     def index
-        # TODO: Show all appointments for corresponding patient and doctor
-        # BLOCKED: User authorization is required.
+        patient_id = params[:patient_id]
+        doctor_id = params[:doctor_id]
+        if patient_id
+            appointments = @appointmentUtility.all_appointments('patient', patient_id)
+        end
+        if doctor_id
+            appointments = @appointmentUtility.all_appointments('doctor', doctor_id)
+        end
+        if appointments
+            render json: appointments, status: 200
+        elsif patient_id === nil && doctor_id === nil
+            render json: {message: 'patient_id or doctor_id is required'}, status: 500
+        else
+            render json: {message: 'no appointments'}, status: 500
+        end
     end
     
     def create
-        # TODO: Create appointment for patient or doctor
         request_body = appointment_param
         appointment = @appointmentUtility.create(request_body[:patient_id], request_body[:doctor_id], request_body[:start_time], request_body[:end_time], params[:tele_visit])
         if appointment && appointment.errors.full_messages.length === 0

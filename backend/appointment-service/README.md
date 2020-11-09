@@ -40,6 +40,39 @@ start_time, end_time : Format 'YYYY-MM-DDTHH-mm'
 }
 ```
 
+#### * Get all appointments based on patient_id or doctor_id: 
+    GET localhost:4040/appointment?patient_id=#ID
+
+##### Constraints
+```
+patient_id or doctor_id should be present. 
+```
+##### Response (Status: 201 Created)
+```JSON
+    [{
+        "appointment_id": "#appointment_id",
+        "patient_id": "#patient_id",
+        "start_time": "#start_time",
+        "end_time": "#end_time",
+        "doctor_id": "#doctor_id",
+        "appointment_status": "#status",
+        "created_at": "2020-10-20T23:43:22.496Z",
+        "updated_at": "2020-10-20T23:43:22.496Z"
+    },
+    {
+        "appointment_id": "#appointment_id",
+        "patient_id": "#patient_id",
+        "start_time": "#start_time",
+        "end_time": "#end_time",
+        "doctor_id": "#doctor_id",
+        "appointment_status": "#status",
+        "created_at": "2020-10-20T23:43:22.496Z",
+        "updated_at": "2020-10-20T23:43:22.496Z"
+    }
+]
+```
+
+
 #### * Get an appointment by ID: 
     GET localhost:4040/appointment/#id?user_token=#token
 
@@ -373,5 +406,4 @@ It will directly download the file via browser
 ##### Response (Status: 200 Ok)
 
 ### Under construction
-* View all appointments for user (BLOCKED: Require user authorization)
 * Delete appointments (BLOCKED: Require user authorization)
