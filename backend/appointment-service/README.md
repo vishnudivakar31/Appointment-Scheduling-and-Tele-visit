@@ -348,6 +348,10 @@ patient_id or doctor_id is required to work.
 
 #### * Generate a report of an appointment:
     GET localhost:4040/appointment/#id/report
+##### Constraint
+```
+cancelled_appointment will only be present if the appointment is cancelled.
+```
 ##### Response (Status: 200 Ok)
 ```JSON
 {
@@ -389,6 +393,13 @@ patient_id or doctor_id is required to work.
         "file_path": "storage/20_summary_Aetna Insurance Card.pdf",
         "created_at": "2020-11-06T19:45:58.979Z",
         "updated_at": "2020-11-06T19:45:58.979Z"
+    },
+    "cancelled_appointment": {
+        "appointment_id": 1,
+        "cancel_reason": "testing from patient.",
+        "patient_id": 1,
+        "created_at": "2020-11-09T05:34:59.824Z",
+        "updated_at": "2020-11-09T05:34:59.824Z"
     },
     "billingCodes": [
         {
