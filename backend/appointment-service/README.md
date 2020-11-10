@@ -46,6 +46,19 @@ start_time, end_time : Format 'YYYY-MM-DDTHH-mm'
 ##### Constraints
 ```
 patient_id or doctor_id should be present. 
+
+Appointment Status
+------------------
+PENDING = 0
+ACTIVE = 1
+ENDED = 2
+CANCELLED = 3
+
+Filters Available
+------------------
+1. from: YYYY-MM-DDThh-mm
+2. to: YYYY-MM-DDThh-mm
+3. appointment_status : 0 - 3
 ```
 ##### Response (Status: 201 Created)
 ```JSON
