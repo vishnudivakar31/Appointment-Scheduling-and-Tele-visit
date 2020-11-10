@@ -7,11 +7,14 @@ class AppointmentController < ApplicationController
     def index
         patient_id = params[:patient_id]
         doctor_id = params[:doctor_id]
+        from = params[:from]
+        to = params[:to]
+        appointment_status = params[:appointment_status]
         if patient_id
-            appointments = @appointmentUtility.all_appointments('patient', patient_id)
+            appointments = @appointmentUtility.all_appointments('patient', patient_id, from, to, appointment_status)
         end
         if doctor_id
-            appointments = @appointmentUtility.all_appointments('doctor', doctor_id)
+            appointments = @appointmentUtility.all_appointments('doctor', doctor_id, from, to, appointment_status)
         end
         if appointments
             render json: appointments, status: 200

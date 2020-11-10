@@ -140,14 +140,22 @@ class AppointmentUtility
         return nil
     end
 
-    def all_appointments(user_type, id)
+    def all_appointments(user_type, id, from, to, appointment_status)
         if user_type.downcase === 'patient'
             appointments = Appointment.where("patient_id = ?", id)
-            return appointments
         else
             appointments = Appointment.where("doctor_id = ?", id)
-            return appointments
         end
+        if from
+            appointments = appointments.select {|appointment| appointment.start_time.to_date >= from.to_date}
+        end
+        if to
+            appointments = appointments.select {|appointment| appointment.end_time.to_date <= to.to_date}
+        end
+        if appointment_status
+            appointments = appointments.select {|appointment| appointment.appointment_status === appointment_status.to_i}
+        end
+        appointments
     end
 
     def cancel_appointments(user_type, id, user_id, cancel_reason)
