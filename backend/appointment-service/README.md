@@ -443,3 +443,42 @@ patient_id or doctor_id is required to work.
     }
 }
 ```
+#### * GET cancelled appointments for practise or patient:
+    GET localhost:4040/cancelled_appointments?doctor_id=#id
+
+##### Constraint
+```
+patient_id or doctor_id is required to work.
+Filters Available
+------------------
+1. from: YYYY-MM-DDThh-mm
+2. to: YYYY-MM-DDThh-mm
+3. appointment_id
+```
+
+##### Response (Status: 200 Ok)
+```JSON
+[
+    {
+        "appointment_id": 6,
+        "cancel_reason": "testing from patient.",
+        "doctor_id": 2,
+        "created_at": "2020-11-09T05:46:05.491Z",
+        "updated_at": "2020-11-09T05:46:05.491Z"
+    },
+    {
+        "appointment_id": 22,
+        "cancel_reason": "testing from patient.",
+        "doctor_id": 2,
+        "created_at": "2020-11-09T05:52:44.173Z",
+        "updated_at": "2020-11-09T05:52:44.173Z"
+    },
+    {
+        "appointment_id": 25,
+        "cancel_reason": "testing from patient.",
+        "doctor_id": 2,
+        "created_at": "2020-11-09T05:51:59.652Z",
+        "updated_at": "2020-11-09T05:51:59.652Z"
+    }
+]
+```
