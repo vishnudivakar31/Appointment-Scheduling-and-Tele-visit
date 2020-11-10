@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post '/appointment/:id/billing_codes', to: 'appointment#create_billing_codes'
   get '/appointment/:id/billing_codes', to: 'appointment#get_billing_codes'
   get '/appointment/:id/report', to: 'appointment#report'
+  get '/cancelled_appointments', to: 'cancelled_appointment#show'
 end
