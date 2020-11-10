@@ -155,6 +155,7 @@ class AppointmentUtility
         if appointment_status
             appointments = appointments.select {|appointment| appointment.appointment_status === appointment_status.to_i}
         end
+        appointments.sort {|a, b| a.start_time.to_date <=> b.start_time.to_date}
         appointments
     end
 
