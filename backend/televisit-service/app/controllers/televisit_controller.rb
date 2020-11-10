@@ -6,6 +6,22 @@ class TelevisitController < ApplicationController
         @teleVisitService = TeleVisitService.new api_key, secret_key
         logger.debug 'Tele-Visit Service initiated'
     end
+
+    def index
+        appointment_id = params[:appointment_id]
+        if appointment_id
+            visit = @teleVisitService.get_televisit_by_appointment_id(appointment_id)
+            if visit
+                logger.debug 'televisit fetched'
+                render json: visit, status: 200
+            else
+                logger.fatal "error: no visit found with appointment id #{appointment_id}"
+                render json: {message: "error: no visit found with appointment id #{appointment_id}"}, status: 500
+            end
+        else
+            render json: {message: 'appointment id is expected with this API'}, status: 500
+        end
+    end
     
     def create
         visit = @teleVisitService.create_visit(params[:appointment_id])
