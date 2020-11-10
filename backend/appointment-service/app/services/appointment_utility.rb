@@ -123,6 +123,13 @@ class AppointmentUtility
             report[:consultationSummary] = appointment.consultationSummary
             report[:billingCodes] = appointment.billingCodes
             report[:appointment_duration] = {duration: appointment.end_time.to_time.to_i - appointment.start_time.to_time.to_i, unit: 'seconds'}
+            if appointment.appointment_status === APPOINTMENT_STATUS::CANCELLED
+                cancelled_appointment = CancelledByPatient.find(id)
+                if cancelled_appointment === nil
+                    cancelled_appointment = CancelledByPractice.find(id)
+                end
+                report[:cancelled_appointment] = cancelled_appointment
+            end
             begin
                 response = RestClient.get "#{CONSTANTS::TELE_VISIT_URL}?appointment_id=#{appointment.appointment_id}"
                 televisit_response = JSON.parse(response)
