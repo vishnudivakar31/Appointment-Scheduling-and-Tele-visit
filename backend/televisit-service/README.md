@@ -3,6 +3,8 @@
 ## Tele-Visit Mircoservices
 This micro-service handles tele-visit session and token creation. This micro-service owns data about appointment tele-visit, uploaded charts and consulation notes
 
+### Heroku URL: https://televisit-service.herokuapp.com
+
 ### PORT: 5050
 
 ### ENDPOINTS

@@ -8,7 +8,7 @@ class CreateAppointments < ActiveRecord::Migration[6.0]
       t.timestamp :end_time
       t.integer :practice_id
       t.integer :doctor_id
-      t.string :appointment_status
+      t.integer :appointment_status
       t.string :chart_file_path
       t.string :consultation_summary_file_path
 

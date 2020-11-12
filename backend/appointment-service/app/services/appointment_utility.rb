@@ -9,7 +9,7 @@ class AppointmentUtility
     end
 
     module CONSTANTS
-        TELE_VISIT_URL = 'http://localhost:5050/televisit'
+        TELE_VISIT_URL = 'https://televisit-service.herokuapp.com/televisit'
     end
 
     APPOINTMENT_STATUS_LABEL = ['PENDING', 'ACTIVE', 'ENDED', 'CANCELLED']

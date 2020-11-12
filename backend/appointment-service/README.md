@@ -5,6 +5,8 @@ This micro-service handles scheduling appointment, updating appointment, post ch
 
 ### PORT: 4040
 
+### HEROKU URL: https://sdpm-appointment-service.herokuapp.com
+
 ### ENDPOINTS
 #### * Create an appointment: 
     POST localhost:4040/appointment?tele_visit=true&user_token=#token

@@ -102,4 +102,6 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  config.opentok_api_key = '46950324'
+  config.opentok_secret_key = 'd630b2a1bb14d98a972fd5c01967b274fc3b9998'
 end
