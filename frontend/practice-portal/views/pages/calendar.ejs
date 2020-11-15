@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    
+    <!-- Link in Calendar -->
+    <link rel="stylesheet" href='/vendor/fullcalendar-5.3.2/main.min.css'>
+    <script src='/vendor/fullcalendar-5.3.2/main.min.js'></script>
+    <!-- Link in Custom CSS / JS -->
+    <link rel="stylesheet" href="/stylesheets/calendar.css">
+    <script src="/javascript/calendar.js"></script>
+</head>
+<body>
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <!-- Content -->
+  <div class="container-fluid">
+
+    <!-- Toggle Doctor -->
+    <div class="row toggle-doctor">
+      <div class="col-6">
+        <label for="select-doctor" class="calendar-menu-label">Doctor Name</label>
+        <!-- TODO - LIST OF DOCTOR NAMES in rails -->
+        <select id="select-doctor" class="form-control" name="doctor">
+          <option value="docID1">Jasani, Shruti</option>
+          <option value="docID2">Smith, James</option>
+          <option value="docID3">Thompson, Tyson</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div id='calendar'></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- *** Book Appointment Modal *** -->
+  <div class="modal fade" id="openAptModal" tabindex="-1" aria-labelledby="openAptModal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="openAptModal-label">Edit Open Appointment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <!-- Hidden ID -->
+            <div class="form-group">
+              <label for="openAptModal-label-apt-id">AppointmentID</label>
+              <input type="text" class="form-control-file" id="openAptModal-label-apt-id"  disabled>
+            </div>
+
+            <!-- Show Start/End Date and Time -->
+            <div class="form-group">
+              <label for="openAptModal-label-date-start-time">Start Time</label>
+              <input type="text" class="form-control-file" id="openAptModal-label-date-start-time"  disabled>
+            </div>
+            <div class="form-group">
+              <label for="openAptModal-label-date-end-time">End Time</label>
+              <input type="text" class="form-control-file" id="openAptModal-label-date-end-time"  disabled>
+            </div>
+
+            <!-- Appointment Type (Tele-visit vs In-person) -->
+            <div class="form-group">
+              <label for="openAptModal-label-apt-type">Appointment Type</label>
+              <select class="form-control" id="openAptModal-label-apt-type">
+                <option value="false">In-Person</option>
+                <option value="true">Tele-Visit</option>
+              </select>
+            </div>
+
+            <!-- Show Doctor Name -->
+            <div class="form-group">
+              <label for="openAptModal-label-doctor-name">Doctor Name</label>
+              <input type="text" class="form-control-file" id="openAptModal-label-doctor-name"  disabled>
+            </div>
+
+            <!-- Select Patient Name -->
+            <div class="form-group">
+              <label for="openAptModal-label-patient-name">Patient Name</label>
+              <!-- TODO - RENDER THIS WITH RAILS??? -->
+              <select class="form-control" id="openAptModal-label-patient-name">
+                <option>Please select...</option>
+                <option value="patientID1">Adams, Jane</option>
+                <option value="patientID2">Brown, John</option>
+                <option value="patientID3">Karan, Zelda</option>
+              </select>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="openAptModal-delete-apt">Delete</button>
+          <button type="button" class="btn btn-primary" id="openAptModal-book-apt">Book</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- *** Edit Booked Appointment Modal *** -->
+  <div class="modal fade" id="bookedAptModal" tabindex="-1" aria-labelledby="bookedAptModal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookedAptModal-label">Edit Booked Appointment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+
+            <!-- Hidden ID -->
+            <div class="form-group">
+              <label for="bookedAptModal-label-apt-id">AppointmentID</label>
+              <input type="text" class="form-control-file" id="bookedAptModal-label-apt-id" disabled>
+            </div>
+
+            <!-- Show Start/End Date and Time -->
+            <div class="form-group">
+              <label for="bookedAptModal-label-date-start-time">Start Time</label>
+              <input type="text" class="form-control-file" id="bookedAptModal-label-date-start-time" disabled>
+            </div>
+            <div class="form-group">
+              <label for="bookedAptModal-label-date-end-time">End Time</label>
+              <input type="text" class="form-control-file" id="bookedAptModal-label-date-end-time" disabled>
+            </div>
+
+            <!-- Show Apt Type -->
+            <div class="form-group">
+              <label for="bookedAptModal-label-apt-type">Appointment Type</label>
+              <input type="text" class="form-control-file" id="bookedAptModal-label-apt-type" disabled>
+            </div>
+
+            <!-- Show Doctor Name -->
+            <div class="form-group">
+              <label for="bookedAptModal-label-doctor-name">Doctor Name</label>
+              <input type="text" class="form-control-file" id="bookedAptModal-label-doctor-name" disabled>
+            </div>
+
+            <!-- Show Patient Name -->
+            <div class="form-group">
+              <label for="bookedAptModal-label-patient-name">Patient Name</label>
+              <input type="text" class="form-control-file" id="bookedAptModal-label-patient-name" disabled>
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="bookedAptModal-cancel-apt">Remove</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- *** Cancelled Appointment Modal *** -->
+  <div class="modal fade" id="cancelledAptModal" tabindex="-1" aria-labelledby="cancelledAptModal-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cancelledAptModal-label">View Cancellation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <!-- Show Start/End Date and Time -->
+            <div class="form-group">
+              <label for="cancelledAptModal-label-date-start-time">Start Time</label>
+              <input type="text" class="form-control-file" id="cancelledAptModal-label-date-start-time" disabled>
+            </div>
+            <div class="form-group">
+              <label for="cancelledAptModal-label-date-end-time">End Time</label>
+              <input type="text" class="form-control-file" id="cancelledAptModal-label-date-end-time" disabled>
+            </div>
+
+            <!-- Show Apt Type -->
+            <div class="form-group">
+              <label for="cancelledAptModal-label-apt-type">Appointment Type</label>
+              <input type="text" class="form-control-file" id="cancelledAptModal-label-apt-type" disabled>
+            </div>
+
+            <!-- Show Doctor Name -->
+            <div class="form-group">
+              <label for="cancelledAptModal-label-doctor-name">Doctor Name</label>
+              <input type="text" class="form-control-file" id="cancelledAptModal-label-doctor-name" disabled>
+            </div>
+
+            <!-- Show Patient Name -->
+            <div class="form-group">
+              <label for="cancelledAptModal-label-patient-name">Patient Name</label>
+              <input type="text" class="form-control-file" id="cancelledAptModal-label-patient-name" disabled>
+            </div>
+
+            <!-- Show Cancelled By -->
+            <div class="form-group">
+              <label for="cancelledAptModal-label-cancelledByName">Cancelled By</label>
+              <input type="text" class="form-control-file" id="cancelledAptModal-label-cancelledByName" disabled>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+
+#video-container div {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-height: 90vh;
+}
+
+#consultation-accordion {
+  margin-top: 10px;
+  max-width: 90%;
+}
+
+#ConsultationSummary-Notes {
+  min-height: 150px;
+}
+
+#EndTelevisit-Btn {
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+/* Open Tok */
+#videos {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Patient (wrt Practice Portal) */
+#subscriber {
+    width: 90% !important;
+    height: 70% !important;
+}
+
+/* Doctor (wrt Practice Portal) */
+#publisher {
+    width: 40% !important;
+    height: 30% !important;
+}
+
+/* Hacky Fixes */
+.OT_video-loading {
+  display: none !important;
+}
+.OT_video-unsupported {
+  display: none !important;
+}

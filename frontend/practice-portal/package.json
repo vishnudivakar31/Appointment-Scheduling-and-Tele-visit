@@ -1,0 +1,15 @@
+{
+  "name": "practice-portal",
+  "version": "1.0.0",
+  "description": "FrontEnd for Practice Portal, Group 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas Thompson",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
+}

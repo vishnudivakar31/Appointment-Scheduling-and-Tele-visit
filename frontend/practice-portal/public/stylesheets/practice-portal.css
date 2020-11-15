@@ -1,0 +1,40 @@
+label.calendar-menu-label {
+  text-align: center;
+}
+
+.calendar-menu-btn {
+  height: 100%;
+}
+
+#calendar-header {
+  margin-top: 20px;
+}
+
+.calendar-header-day {
+  background-color: #f8f9fa;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.calendar-header-day h4 {
+  text-align: center;
+  padding: 5px;
+  font-size: 14px;
+}
+
+#calendar-body {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.calendar-body-day {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #f8f9fa;
+  min-height: 550px;
+  margin: 5px;
+}
+
+.calendar-timeslot {
+  margin: 5px;
+  font-size: 12px;
+}
