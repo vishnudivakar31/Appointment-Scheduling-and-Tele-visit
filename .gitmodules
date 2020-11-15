@@ -1,0 +1,3 @@
+[submodule "frontend/cs673-group2-patientportal"]
+	path = frontend/cs673-group2-patientportal
+	url = https://github.com/Ricky-Rodriguez/cs673-group2-patientportal.git
