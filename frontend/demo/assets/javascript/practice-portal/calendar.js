@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // Get Sunday of Today's Week
-  var startOfCalander = GetCurrentWeekSunday().toJSON().slice(0,10);
+  // var startOfCalander = GetCurrentWeekSunday().toJSON().slice(0,10);
 
   // Create Calendar
   var calendarEl = document.getElementById('calendar');
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
     initialView: 'timeGridWeek',
-    initialDate: startOfCalander,
+    // initialDate: startOfCalander,
     navLinks: true, // can click day/week names to navigate views
     nowIndicator: true,
 

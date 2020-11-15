@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="../../assets/vendor/bootstrap/bootstrap.min.css">
   <script src="../../assets/vendor/jquery/jquery-3.5.1.slim.min.js"></script>
   <script src="../../assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-  <!-- Link in Calendar -->
-  <link rel="stylesheet" href='../../assets/vendor/fullcalendar-5.3.2/main.min.css'>
-  <script src='../../assets/vendor/fullcalendar-5.3.2/main.min.js'></script>
+  <!-- Link in Open Tok -->
+  <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+
   <!-- Link in Custom CSS / JS -->
   <link rel="stylesheet" href="../../assets/style/practice-portal/televisit.css">
   <script src="../../assets/javascript/practice-portal/televisit.js"></script>
@@ -41,7 +41,10 @@
     <div class="row ">
       <!-- Video Session -->
       <div class="col-8" id="video-container">
-        <img src="https://via.placeholder.com/1000">
+        <div id="videos">
+            <div id="subscriber"></div>
+            <div id="publisher"></div>
+        </div>
       </div>
 
       <!-- Consultation Notes -->
@@ -122,7 +125,7 @@
                 <form>
                   <div class="form-group">
                     <label for="ConsultationSummary-Notes">Notes for Consultation</label>
-                    <textarea id="ConsultationSummary-Notes" class="form-control" placeholder="Add notes about consultation here...&#10;Reason for visit: Patient arrived with ear ache and fatigue.&#10;Recommended Treatment: Bed rest, antibotic, no swimming"></textarea>
+                    <textarea id="ConsultationSummary-Notes" class="form-control" placeholder="Add notes about consultation here...&#10;Reason for Visit: Patient arrived with ear ache and fatigue.&#10;Recommended Treatment: Bed rest, antibotic, no swimming"></textarea>
                   </div>
                   <button type="submit" class="btn btn-primary" id="ConsultationSummary-Submit">Submit</button>
                 </form>
