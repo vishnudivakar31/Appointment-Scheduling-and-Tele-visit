@@ -1,3 +1,9 @@
 [submodule "frontend/cs673-group2-patientportal"]
 	path = frontend/cs673-group2-patientportal
 	url = https://github.com/Ricky-Rodriguez/cs673-group2-patientportal.git
+[submodule "frontend/cs673-group2-practice-portal"]
+	path = frontend/cs673-group2-practice-portal
+	url = git@github.com:tomtom28/cs673-group2-practice-portal.git
+[submodule "api_services/ui_helper_apis"]
+	path = api_services/ui_helper_apis
+	url = https://github.com/akulprabhudesai/ui_helper_apis.git
