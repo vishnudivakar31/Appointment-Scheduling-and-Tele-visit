@@ -189,7 +189,6 @@ class AppointmentUtility
                 rescue ex =>
                     ex
                 end
-                byebug
                 appointment.appointment_status = APPOINTMENT_STATUS::CANCELLED
                 appointment.save
                 cancelled_by_practice = CancelledByPractice.new(appointment_id: id, cancel_reason: cancel_reason, doctor_id: user_id)
