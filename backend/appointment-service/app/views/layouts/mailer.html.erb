@@ -2,12 +2,15 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
-    </style>
   </head>
 
   <body>
     <%= yield %>
+    <div style="margin-top: 15px;">
+      Thank you for choosing appointment services and tele-visit services.
+    <div>
+    <div>
+      <%= image_tag('logo.png', size: '200px', alt: 'appointment&tele-visit services logo')%>
+    </div>
   </body>
 </html>
