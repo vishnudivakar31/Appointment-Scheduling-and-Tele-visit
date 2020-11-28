@@ -27,7 +27,8 @@ class AppointmentController < ApplicationController
     
     def create
         request_body = appointment_param
-        appointment = @appointmentUtility.create(request_body[:patient_id], request_body[:doctor_id], request_body[:start_time], request_body[:end_time], params[:tele_visit])
+        email = params[:email]
+        appointment = @appointmentUtility.create(request_body[:patient_id], request_body[:doctor_id], request_body[:start_time], request_body[:end_time], params[:tele_visit], email)
         if appointment && appointment.errors.full_messages.length === 0
             render json: appointment, status: 201
         else
@@ -56,11 +57,12 @@ class AppointmentController < ApplicationController
     def destroy
         patient_id = params[:patient_id]
         doctor_id = params[:doctor_id]
+        email = params[:email]
         if patient_id
-            appointment = @appointmentUtility.cancel_appointments('patient', params[:id], patient_id, params[:cancel_reason])
+            appointment = @appointmentUtility.cancel_appointments('patient', params[:id], patient_id, params[:cancel_reason], email)
         end
         if doctor_id
-            appointment = @appointmentUtility.cancel_appointments('doctor', params[:id], doctor_id, params[:cancel_reason])
+            appointment = @appointmentUtility.cancel_appointments('doctor', params[:id], doctor_id, params[:cancel_reason], email)
         end
         if appointment
             render json: appointment, status: 200

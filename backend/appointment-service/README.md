@@ -9,7 +9,7 @@ This micro-service handles scheduling appointment, updating appointment, post ch
 
 ### ENDPOINTS
 #### * Create an appointment: 
-    POST localhost:4040/appointment?tele_visit=true&user_token=#token
+    POST localhost:4040/appointment?tele_visit=true&user_token=#token&email=#email
 
 ##### Request Body
 ```JSON
@@ -41,6 +41,8 @@ start_time, end_time : Format 'YYYY-MM-DDTHH-mm'
     "updated_at": "2020-10-20T23:43:22.496Z"
 }
 ```
+
+##### A notification email will be sent to patient.
 
 #### * Get all appointments based on patient_id or doctor_id: 
     GET localhost:4040/appointment?patient_id=#ID
@@ -347,6 +349,8 @@ patient_id or doctor_id is required to work.
     "updated_at": "2020-11-09T05:52:44.173Z"
 }
 ```
+
+##### A notification email will be sent to patient.
 
 #### * Generate a report of an appointment:
     GET localhost:4040/appointment/#id/report

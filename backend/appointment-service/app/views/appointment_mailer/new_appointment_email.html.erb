@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+
+  <body>
+    <p>You created a new appointment with appointment and tele-visit services<br>
+       -------------------------------------------------------------------------------------------------------------------------</p>
+    <p>Appointment Details
+      <br>-------------------------------------------------------------------------------------------------------------------------
+    </p>
+    <p>
+      Scheduled Date and Start Time: <%= @appointment.start_time%> 
+    </p>
+    <p>
+      Scheduled Date and End Time: <%= @appointment.end_time%> 
+    </p>
+    <p>-------------------------------------------------------------------------------------------------------------------------</p>
+    <br>
+    <br>
+    <a href="https://group2-patient-portal.herokuapp.com/appointments">Visit Patient Portal</a> |
+    <a href="https://group2-practice-portal.herokuapp.com">Visit Practise Portal</a>
+  </body>
+</html>

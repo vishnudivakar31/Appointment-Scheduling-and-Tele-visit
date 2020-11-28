@@ -14,7 +14,7 @@ class AppointmentUtility
 
     APPOINTMENT_STATUS_LABEL = ['PENDING', 'ACTIVE', 'ENDED', 'CANCELLED']
 
-    def create(patient_id, doctor_id, start_time, end_time, tele_visit_status)
+    def create(patient_id, doctor_id, start_time, end_time, tele_visit_status, email)
         appointment = Appointment.new(patient_id: patient_id, doctor_id: doctor_id, start_time: start_time, end_time: end_time, appointment_status: APPOINTMENT_STATUS::PENDING)
         appointment.save
         if tele_visit_status.to_s.downcase === 'true'
@@ -24,6 +24,7 @@ class AppointmentUtility
                 appointment.errors.add(:appointment_status, JSON.parse(response))
             end
         end
+        AppointmentMailer.with(appointment: appointment, email: email).new_appointment_email.deliver_now
         appointment
     end
     def show(id)
@@ -166,7 +167,7 @@ class AppointmentUtility
         appointments
     end
 
-    def cancel_appointments(user_type, id, user_id, cancel_reason)
+    def cancel_appointments(user_type, id, user_id, cancel_reason, email)
         user_id = user_id.to_i
         appointment = Appointment.find(id)
         if appointment && user_type.downcase === 'patient'
@@ -180,6 +181,7 @@ class AppointmentUtility
                 appointment.save
                 cancelled_by_patient = CancelledByPatient.new(appointment_id: id, cancel_reason: cancel_reason, patient_id: user_id)
                 cancelled_by_patient.save
+                AppointmentMailer.with(appointment: appointment, email: email).cancel_appointment_email.deliver_now
                 return cancelled_by_patient
             end
         elsif appointment && user_type.downcase === 'doctor' && appointment.appointment_status != APPOINTMENT_STATUS::CANCELLED
@@ -193,6 +195,7 @@ class AppointmentUtility
                 appointment.save
                 cancelled_by_practice = CancelledByPractice.new(appointment_id: id, cancel_reason: cancel_reason, doctor_id: user_id)
                 cancelled_by_practice.save
+                AppointmentMailer.with(appointment: appointment, email: email).cancel_appointment_email.deliver_now
                 return cancelled_by_practice
             end
         end
