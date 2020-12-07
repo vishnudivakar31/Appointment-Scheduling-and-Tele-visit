@@ -16,6 +16,7 @@ class AppointmentUtility
 
     def create(patient_id, doctor_id, start_time, end_time, tele_visit_status, email)
         appointment = Appointment.new(patient_id: patient_id, doctor_id: doctor_id, start_time: start_time, end_time: end_time, appointment_status: APPOINTMENT_STATUS::PENDING)
+        appointment.tele_visit = tele_visit_status && tele_visit_status.to_s === 'true' ? true : false
         appointment.save
         if tele_visit_status.to_s.downcase === 'true'
             response = RestClient.post CONSTANTS::TELE_VISIT_URL, {appointment_id: appointment.appointment_id}
