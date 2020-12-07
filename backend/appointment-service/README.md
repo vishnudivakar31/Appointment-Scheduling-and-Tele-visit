@@ -501,8 +501,7 @@ Filters Available
 ```
 
 #### UNIT TEST CASES
-```
-# Running:
+##### Running:
 <div class="text-blue mb-2">
     + BillingCodeTest#test_Billing_Codes_Validity_Test:_appointment_id_can't_be_blank = 0.12 s = .
     + AppointmentTest#test_Start_Time_and_End_Time_Constraint_Failure_Test:_End_Time_>_Start_Time = 0.11 s = .
@@ -527,4 +526,3 @@ Filters Available
 <div class="text-green mb-2 ml-4">
     16 runs, 18 assertions, 0 failures, 0 errors, 0 skips
 </div>
-```
