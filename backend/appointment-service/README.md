@@ -502,7 +502,7 @@ Filters Available
 
 #### UNIT TEST CASES
 ##### Running:
-<div class="text-blue mb-2">
+<div style="color: '#0984e3'">
     + BillingCodeTest#test_Billing_Codes_Validity_Test:_appointment_id_can't_be_blank = 0.12 s = .
     + AppointmentTest#test_Start_Time_and_End_Time_Constraint_Failure_Test:_End_Time_>_Start_Time = 0.11 s = .
     + AppointmentTest#test_Start_Time_and_End_Time_Constraint_Failure_Message_Test:_End_Time_>_Start_Time = 0.12 s = .
@@ -520,9 +520,9 @@ Filters Available
     + BillingCodeTest#test_Billing_Codes_Relation_Test:_Get_appointment_corresponding_to_billing_code = 0.16 s = .
     + AppointmentMailerTest#test_Notification:_Basic_email_composition = 0.25 s = .
 </div>
-<div class="text-orange-light mb-2">
+<div style="color: '#fab1a0'">
     Finished in 0.308419s, 51.8775 runs/s, 58.3622 assertions/s.
 </div>
-<div class="text-green mb-2 ml-4">
+<div style="color: '#00b894'">
     16 runs, 18 assertions, 0 failures, 0 errors, 0 skips
 </div>
