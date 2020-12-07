@@ -499,3 +499,27 @@ Filters Available
     }
 ]
 ```
+
+#### UNIT TEST CASES
+# Running:
+```
+BillingCodeTest#test_Billing_Codes_Validity_Test:_appointment_id_can't_be_blank = 0.12 s = .
+AppointmentTest#test_Start_Time_and_End_Time_Constraint_Failure_Test:_End_Time_>_Start_Time = 0.11 s = .
+AppointmentTest#test_Start_Time_and_End_Time_Constraint_Failure_Message_Test:_End_Time_>_Start_Time = 0.12 s = .
+BillingCodeTest#test_Billing_Codes_Validity_Test:_appointment_should_exist = 0.12 s = .
+AppointmentTest#test_Validity_Test:_invalid_appointment_without_end_time = 0.12 s = .
+AppointmentTest#test_Validity_Test:_invalid_appointment_without_doctor_id = 0.12 s = .
+AppointmentTest#test_Validity_Test:_invalid_appointment_without_tele_visit = 0.12 s = .
+AppointmentTest#test_Validity_Test:_valid_appointment = 0.12 s = .
+AppointmentTest#test_Start_Time_and_End_Time_Constraint:_End_Time_>_Start_Time = 0.12 s = .
+AppointmentTest#test_Validity_Test:_invalid_appointment_without_start_time = 0.12 s = .
+AppointmentTest#test_Validity_Test:_invalid_appointment_without_patient_id = 0.12 s = .
+AppointmentTest#test_Validity_Test:_invalid_appointment_without_appointment_status = 0.13 s = .
+BillingCodeTest#test_Billing_Codes_Validity_Test:_valid_billing_code = 0.16 s = .
+BillingCodeTest#test_Billing_Codes_Validity_Test:_missing_billing_code = 0.16 s = .
+BillingCodeTest#test_Billing_Codes_Relation_Test:_Get_appointment_corresponding_to_billing_code = 0.16 s = .
+AppointmentMailerTest#test_Notification:_Basic_email_composition = 0.25 s = .
+
+Finished in 0.308419s, 51.8775 runs/s, 58.3622 assertions/s.
+16 runs, 18 assertions, 0 failures, 0 errors, 0 skips
+```
