@@ -61,4 +61,5 @@ Rails.application.configure do
   }
   config.action_controller.asset_host=host
   config.action_mailer.asset_host=host
+  ActionMailer::Base.delivery_method = :test
 end
