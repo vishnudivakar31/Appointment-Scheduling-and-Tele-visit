@@ -7,7 +7,7 @@ class AppointmentValidator < ActiveModel::Validator
 end
 
 class Appointment < ApplicationRecord
-    validates :patient_id, :start_time, :end_time, :doctor_id, :appointment_status, presence: true
+    validates :patient_id, :start_time, :end_time, :doctor_id, :appointment_status, :tele_visit, presence: true
     validates_with AppointmentValidator
     has_many :charts
     has_one :consultationSummary

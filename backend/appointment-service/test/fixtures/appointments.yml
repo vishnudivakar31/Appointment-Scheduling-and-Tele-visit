@@ -3,23 +3,15 @@
 one:
   appointment_id: 
   patient_id: 1
-  date: 2020-10-04
-  start_time: 2020-10-04 20:24:01
-  end_time: 2020-10-04 20:24:01
-  practice_id: 1
+  start_time: "2020-10-04 20:24:01"
+  end_time: "2020-10-04 20:50:01"
   doctor_id: 1
-  appointment_status: MyString
-  chart_file_path: MyString
-  consultation_summary_file_path: MyString
+  appointment_status: 0
 
 two:
   appointment_id: 
   patient_id: 1
-  date: 2020-10-04
-  start_time: 2020-10-04 20:24:01
-  end_time: 2020-10-04 20:24:01
-  practice_id: 1
+  start_time: "2020-10-04 21:24:01"
+  end_time: "2020-10-04 22:24:01"
   doctor_id: 1
-  appointment_status: MyString
-  chart_file_path: MyString
-  consultation_summary_file_path: MyString
+  appointment_status: 0

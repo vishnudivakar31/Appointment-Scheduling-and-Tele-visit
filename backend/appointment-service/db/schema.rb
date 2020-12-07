@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_180458) do
+ActiveRecord::Schema.define(version: 2020_12_07_042804) do
 
   create_table "appointments", primary_key: "appointment_id", force: :cascade do |t|
     t.integer "patient_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_180458) do
     t.integer "appointment_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "tele_visit"
   end
 
   create_table "billing_codes", force: :cascade do |t|

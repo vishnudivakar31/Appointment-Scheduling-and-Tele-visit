@@ -15,10 +15,8 @@ development:
   database: db/development.sqlite3
 
 test:
-  adapter: postgresql
-  database: appointment
-  pool: 5
-  timeout: 5000
+  <<: *default
+  database: db/test.sqlite3
 
 production:
   adapter: postgresql

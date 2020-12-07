@@ -2,10 +2,10 @@
 
 one:
   appointment_id: 
-  cancel_reason: MyString
-  patient_id: 1
+  cancel_reason: "busy"
+  doctor_id: 1
 
 two:
   appointment_id: 
-  cancel_reason: MyString
-  patient_id: 1
+  cancel_reason: "busy"
+  doctor_id: 1
