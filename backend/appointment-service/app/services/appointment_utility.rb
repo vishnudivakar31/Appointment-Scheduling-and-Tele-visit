@@ -90,6 +90,15 @@ class AppointmentUtility
         appointment
     end
 
+    def upload_summary_text(id, summary) 
+        appointment = Appointment.find(id)
+        file_path = store_file_txt(id, summary, 'summary')
+        summary = ConsultationSummary.new(appointment_id: id, file_path: file_path)
+        appointment.consultationSummary = summary
+        appointment.save
+        appointment
+    end
+
     def download_summary(id)
         file = nil
         appointment = Appointment.find(id)
@@ -209,6 +218,15 @@ class AppointmentUtility
         file_path = new_file.path
         content = file.tempfile.read
         content = content.force_encoding('UTF-8')
+        new_file.write(content)
+        new_file.close
+        file_path
+    end
+
+    def store_file_txt(id, text, type)
+        new_file = File.new("storage/#{id}_#{type}_text", 'w')
+        file_path = new_file.path
+        content = text.force_encoding('UTF-8')
         new_file.write(content)
         new_file.close
         file_path

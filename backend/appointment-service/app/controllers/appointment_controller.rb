@@ -109,10 +109,25 @@ class AppointmentController < ApplicationController
         end
     end
 
+    def upload_summary_text
+        appointment = @appointmentUtility.upload_summary_text(params[:id], params[:summary])
+        if appointment && appointment.errors.full_messages.length === 0
+            render json: appointment.consultationSummary, status: 200
+        else
+            render json: {message: appointment.errors.full_messages}, status: 500
+        end
+    end
+
     def download_summary
+        type = params[:download_type]
         file = @appointmentUtility.download_summary(params[:id])
-        if file
+        if file && type === 'file'
             send_file file[:path], :disposition => 'attachement', :filename => file[:name]
+        elsif file && type === 'json'
+            data = ''
+            f = File.open(file[:path], 'r')
+            f.each_line {|line| data += line}
+            render json: {summary: data}, status: 200
         else
             render json: {message: 'no file present to download'}, status: 500
         end

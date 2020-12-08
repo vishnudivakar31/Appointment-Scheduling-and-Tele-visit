@@ -213,7 +213,7 @@ file# : # starts from 1..files_count
 It will directly download the file via browser
 ```
 
-#### * Upload consultation summary for appointment:
+#### * Upload consultation summary file for appointment:
     POST localhost:4040/appointment/#id/consultation_summary?user_token=#token
 
 ##### Request Body
@@ -235,12 +235,40 @@ file: #{file_data}
 }
 ```
 
-#### * Download a consultation summary for an appointment:
-    GET localhost:4040/appointment/#id/consultation_summary?user_token=#token
+#### * Upload consultation summary text for appointment:
+    POST localhost:4040/appointment/#id/upload_consultation_summary
+
+##### Request Body
+```JSON
+{
+    "summary": "Hello. How are you?"
+}
+```
 
 ##### Response (Status: 200 Ok)
+```JSON
+{
+    "appointment_id": "#appointment_id",
+    "file_path": "#summary_loc",
+    "created_at": "2020-10-21T00:03:54.413Z",
+    "updated_at": "2020-10-21T00:03:54.413Z"
+}
+```
+
+#### * Download a consultation summary for an appointment:
+    GET localhost:4040/appointment/#id/consultation_summary?download_type=#type
+
+##### Types: json/file
+##### Response File (Status: 200 Ok)
 ```
 It will directly download the file via browser
+```
+
+##### Response Json (Status: 200 Ok)
+```JSON
+{
+    "summary": "#summary"
+}
 ```
 
 #### * Post billing codes to an appointment:
@@ -501,25 +529,25 @@ Filters Available
 ```
 
 #### UNIT TEST CASES
-# Running:
-```
-BillingCodeTest#test_Billing_Codes_Validity_Test:_appointment_id_can't_be_blank = 0.12 s = .
-AppointmentTest#test_Start_Time_and_End_Time_Constraint_Failure_Test:_End_Time_>_Start_Time = 0.11 s = .
-AppointmentTest#test_Start_Time_and_End_Time_Constraint_Failure_Message_Test:_End_Time_>_Start_Time = 0.12 s = .
-BillingCodeTest#test_Billing_Codes_Validity_Test:_appointment_should_exist = 0.12 s = .
-AppointmentTest#test_Validity_Test:_invalid_appointment_without_end_time = 0.12 s = .
-AppointmentTest#test_Validity_Test:_invalid_appointment_without_doctor_id = 0.12 s = .
-AppointmentTest#test_Validity_Test:_invalid_appointment_without_tele_visit = 0.12 s = .
-AppointmentTest#test_Validity_Test:_valid_appointment = 0.12 s = .
-AppointmentTest#test_Start_Time_and_End_Time_Constraint:_End_Time_>_Start_Time = 0.12 s = .
-AppointmentTest#test_Validity_Test:_invalid_appointment_without_start_time = 0.12 s = .
-AppointmentTest#test_Validity_Test:_invalid_appointment_without_patient_id = 0.12 s = .
-AppointmentTest#test_Validity_Test:_invalid_appointment_without_appointment_status = 0.13 s = .
-BillingCodeTest#test_Billing_Codes_Validity_Test:_valid_billing_code = 0.16 s = .
-BillingCodeTest#test_Billing_Codes_Validity_Test:_missing_billing_code = 0.16 s = .
-BillingCodeTest#test_Billing_Codes_Relation_Test:_Get_appointment_corresponding_to_billing_code = 0.16 s = .
-AppointmentMailerTest#test_Notification:_Basic_email_composition = 0.25 s = .
+```diff
+! Running:
+! BillingCodeTest#test_Billing_Codes_Validity_Test:_appointment_id_can't_be_blank = 0.12 s = .
+! AppointmentTest#test_Start_Time_and_End_Time_Constraint_Failure_Test:_End_Time_>_Start_Time = 0.11 s = .
+! AppointmentTest#test_Start_Time_and_End_Time_Constraint_Failure_Message_Test:_End_Time_>_Start_Time = 0.12 s = .
+! BillingCodeTest#test_Billing_Codes_Validity_Test:_appointment_should_exist = 0.12 s = .
+! AppointmentTest#test_Validity_Test:_invalid_appointment_without_end_time = 0.12 s = .
+! AppointmentTest#test_Validity_Test:_invalid_appointment_without_doctor_id = 0.12 s = .
+! AppointmentTest#test_Validity_Test:_invalid_appointment_without_tele_visit = 0.12 s = .
+! AppointmentTest#test_Validity_Test:_valid_appointment = 0.12 s = .
+! AppointmentTest#test_Start_Time_and_End_Time_Constraint:_End_Time_>_Start_Time = 0.12 s = .
+! AppointmentTest#test_Validity_Test:_invalid_appointment_without_start_time = 0.12 s = .
+! AppointmentTest#test_Validity_Test:_invalid_appointment_without_patient_id = 0.12 s = .
+! AppointmentTest#test_Validity_Test:_invalid_appointment_without_appointment_status = 0.13 s = .
+! BillingCodeTest#test_Billing_Codes_Validity_Test:_valid_billing_code = 0.16 s = .
+! BillingCodeTest#test_Billing_Codes_Validity_Test:_missing_billing_code = 0.16 s = .
+! BillingCodeTest#test_Billing_Codes_Relation_Test:_Get_appointment_corresponding_to_billing_code = 0.16 s = .
+! AppointmentMailerTest#test_Notification:_Basic_email_composition = 0.25 s = .
 
-Finished in 0.308419s, 51.8775 runs/s, 58.3622 assertions/s.
-16 runs, 18 assertions, 0 failures, 0 errors, 0 skips
+# Finished in 0.308419s, 51.8775 runs/s, 58.3622 assertions/s.
++ 16 runs, 18 assertions, 0 failures, 0 errors, 0 skips
 ```
