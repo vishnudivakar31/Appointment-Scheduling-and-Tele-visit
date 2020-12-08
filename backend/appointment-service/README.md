@@ -235,7 +235,7 @@ file: #{file_data}
 }
 ```
 
-#### * Upload consultation summary file for appointment:
+#### * Upload consultation summary text for appointment:
     POST localhost:4040/appointment/#id/upload_consultation_summary
 
 ##### Request Body
