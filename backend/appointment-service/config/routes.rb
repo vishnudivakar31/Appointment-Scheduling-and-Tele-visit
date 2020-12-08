@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get '/appointment/:id/billing_codes', to: 'appointment#get_billing_codes'
   get '/appointment/:id/report', to: 'appointment#report'
   get '/cancelled_appointments', to: 'cancelled_appointment#show'
+  post '/appointment/:id/upload_consultation_summary', to: 'appointment#upload_summary_text'
 end

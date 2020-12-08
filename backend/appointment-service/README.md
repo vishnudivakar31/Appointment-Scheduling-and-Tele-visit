@@ -213,7 +213,7 @@ file# : # starts from 1..files_count
 It will directly download the file via browser
 ```
 
-#### * Upload consultation summary for appointment:
+#### * Upload consultation summary file for appointment:
     POST localhost:4040/appointment/#id/consultation_summary?user_token=#token
 
 ##### Request Body
@@ -235,12 +235,40 @@ file: #{file_data}
 }
 ```
 
-#### * Download a consultation summary for an appointment:
-    GET localhost:4040/appointment/#id/consultation_summary?user_token=#token
+#### * Upload consultation summary file for appointment:
+    POST localhost:4040/appointment/#id/upload_consultation_summary
+
+##### Request Body
+```JSON
+{
+    "summary": "Hello. How are you?"
+}
+```
 
 ##### Response (Status: 200 Ok)
+```JSON
+{
+    "appointment_id": "#appointment_id",
+    "file_path": "#summary_loc",
+    "created_at": "2020-10-21T00:03:54.413Z",
+    "updated_at": "2020-10-21T00:03:54.413Z"
+}
+```
+
+#### * Download a consultation summary for an appointment:
+    GET localhost:4040/appointment/#id/consultation_summary?download_type=#type
+
+##### Types: json/file
+##### Response File (Status: 200 Ok)
 ```
 It will directly download the file via browser
+```
+
+##### Response Json (Status: 200 Ok)
+```JSON
+{
+    "summary": "#summary"
+}
 ```
 
 #### * Post billing codes to an appointment:
