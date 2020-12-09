@@ -1,3 +1,3 @@
 class TeleVisit < ApplicationRecord
-    has_many :charts
+    validates :appointment_id, :session_id, :patient_token, :doctor_token, :status, presence: true
 end

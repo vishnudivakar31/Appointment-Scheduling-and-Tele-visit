@@ -131,5 +131,16 @@ Billing Time Constraints
     ii)  Tele-Visit is active
     iii) Tele-Visit is cancelled.
 ```
-### Under Construction
-*   User authorization for CRUD tele-visit
+
+#### UNIT TEST CASES
+```diff
+! Running:
+! TeleVisitTest#test_TeleVisit_Model_Validity:_creating_a_valid_televisit_model = 0.03 s = .
+! TeleVisitTest#test_TeleVisit_Model_Validity:_creating_an_invalid_televisit_model_and_checking_the_error_constraint_-_appointment_id = 0.03 s = .
+! TeleVisitTest#test_TeleVisit_Model_Validity:_creating_an_invalid_televisit_model_and_checking_the_error_constraint_-_status = 0.03 s = .
+! TeleVisitTest#test_TeleVisit_Model_Validity:_creating_an_invalid_televisit_model_and_checking_the_full_error_constraint = 0.03 s = .
+! TeleVisitTest#test_TeleVisit_Model_Validity:_creating_an_invalid_televisit_model_and_checking_the_error_constraint_-_session_id = 0.03 s = .!
+
+# Finished in 0.145232s, 41.3132 runs/s, 41.3132 assertions/s.
++ 6 runs, 6 assertions, 0 failures, 0 errors, 0 skips
+```
