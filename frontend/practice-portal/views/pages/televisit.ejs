@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+
+    <!-- Link in Open Tok -->
+    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+    <!-- Link in Custom CSS / JS -->
+    <link rel="stylesheet" href="/stylesheets/televisit.css">
+    <script src="/javascript/televisit.js"></script>
+</head>
+<body>
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <!-- Content -->
+  <div class="container-fluid">
+
+    <!-- Tele Visit -->
+    <div class="row ">
+      <!-- Video Session -->
+      <div class="col-8" id="video-container">
+        <div id="videos">
+            <div id="subscriber"></div>
+            <div id="publisher"></div>
+        </div>
+      </div>
+
+      <!-- Consultation Notes -->
+      <div class="col-4">
+        <div id="consultation-accordion">
+
+          <!-- Patient Information -->
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Patient Information
+                </button>
+              </h5>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#consultation-accordion">
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <label for="patientInfo-Name">Patient Name</label>
+                    <input type="text" class="form-control" id="patientInfo-Name" placeholder="Johnny Van Allen" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="patientInfo-Height">Height (inches)</label>
+                    <input type="number" class="form-control" id="patientInfo-Height" placeholder="60">
+                  </div>
+                  <div class="form-group">
+                    <label for="patientInfo-Weight">Weight (pounds)</label>
+                    <input type="number" class="form-control" id="patientInfo-Weight" placeholder="150">
+                  </div>
+                  <div class="form-group">
+                    <label for="patientInfo-HeartRate">Heart Rate (bpm)</label>
+                    <input type="number" class="form-control" id="patientInfo-HeartRate" placeholder="70">
+                  </div>
+                  <div class="form-group">
+                    <label for="patientInfo-BloodPressure">Blood Pressure (mmHg/mmHg)</label>
+                    <input type="text" class="form-control" id="patientInfo-BloodPressure" placeholder="120/80">
+                  </div>
+                  <button type="submit" class="btn btn-primary" id="patientInfo-Submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Billing Codes -->
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Billing Codes
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#consultation-accordion">
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <label for="BillingCode-List">List of Billing Codes (comma seperated)</label>
+                    <textarea id="BillingCode-List" class="form-control" placeholder="F01, F02, F03, B17"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary" id="BillingCode-Submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Consultation Summary -->
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Consultation Summary
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#consultation-accordion">
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <label for="ConsultationSummary-Notes">Notes for Consultation</label>
+                    <textarea id="ConsultationSummary-Notes" class="form-control" placeholder="Add notes about consultation here...&#10;Reason for Visit: Patient arrived with ear ache and fatigue.&#10;Recommended Treatment: Bed rest, antibotic, no swimming"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary" id="ConsultationSummary-Submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart Notes -->
+          <div class="card">
+            <div class="card-header" id="headingFour">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Upload Chart Notes
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#consultation-accordion">
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <label for="ChartNotes-File">Chart Notes</label>
+                    <input type="file" class="form-control-file" id="ChartNotes-File">
+                  </div>
+                  <button type="submit" class="btn btn-primary" id="ChartNotes-Submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- End Session -->
+          <div>
+            <div>
+              <button type="button" class="btn btn-danger" id="EndTelevisit-Btn">End Session</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
